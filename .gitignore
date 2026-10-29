@@ -1,0 +1,12 @@
+_private/
+papers/
+
+book/build/__pycache__/
+**/__pycache__/
+*.pyc
+*.tmp
+output/*-new.pdf
+
+.DS_Store
+Thumbs.db
+desktop.ini
