@@ -1,3 +1,7 @@
+#ifdef _WIN32
+#include <windows.h>
+#endif
+
 #include "plugin_api.h"
 #include "registry.h"
 #include "events.h"
@@ -62,6 +66,10 @@ static void run_save(const char*) {
 }
 
 int main() {
+#ifdef _WIN32
+    SetConsoleOutputCP(CP_UTF8);
+#endif
+
     Command help;
     help.name = "help";
     help.help = "列出所有命令";
@@ -118,7 +126,7 @@ int main() {
         std::printf("> ");
         std::fflush(stdout);
         if (!std::getline(std::cin, line)) break;
-        while (!line.empty() && (line.back() == '' || line.back() == ' ')) line.pop_back();
+        while (!line.empty() && (line.back() == '\r' || line.back() == ' ')) line.pop_back();
         if (line == "quit") break;
         if (line.empty()) continue;
 

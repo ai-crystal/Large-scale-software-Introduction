@@ -1,3 +1,7 @@
+#ifdef _WIN32
+#include <windows.h>
+#endif
+
 #include <cstdio>
 #include <memory>
 #include <string>
@@ -22,6 +26,10 @@ private:
 };
 
 int main() {
+#ifdef _WIN32
+    SetConsoleOutputCP(CP_UTF8);
+#endif
+
     FileHandle file("raii_demo.cpp");
     if (!file) {
         std::printf("打不开文件\n");

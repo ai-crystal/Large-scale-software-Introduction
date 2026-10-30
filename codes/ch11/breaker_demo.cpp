@@ -1,7 +1,15 @@
+#ifdef _WIN32
+#include <windows.h>
+#endif
+
 #include "breaker.h"
 #include <cstdio>
 
 int main() {
+#ifdef _WIN32
+    SetConsoleOutputCP(CP_UTF8);
+#endif
+
     CircuitBreaker breaker(2, 1000);
 
     for (int i = 0; i < 5; ++i) {

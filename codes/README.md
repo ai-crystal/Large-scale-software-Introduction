@@ -39,6 +39,8 @@ build-codes.bat
 
 ## 说明
 
+Windows 控制台默认用 GBK 显示文字，而这些代码的源文件是 UTF-8。每个示例程序启动时都调用了 `SetConsoleOutputCP(CP_UTF8)`，把输出编码切到 UTF-8，否则中文会显示成“浣犲ソ”这样的乱码。Linux 和 macOS 不需要这一步，相关代码被 `#ifdef _WIN32` 挡掉。
+
 `ch03` 到 `ch07` 的宿主会扫描当前目录下的 `plugins` 子目录。用 CMake 构建时，插件产物已经放在 `build/plugins`，从 `build` 目录里运行宿主即可。
 
 `ch07` 的管道代码是 Windows 版本。Linux 的对应函数写在那个目录的 README 里，思路完全一样。

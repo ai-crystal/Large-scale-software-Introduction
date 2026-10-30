@@ -1,8 +1,16 @@
+#ifdef _WIN32
+#include <windows.h>
+#endif
+
 #include <iostream>
 #include <string>
 #include "commands.h"
 
 int main() {
+#ifdef _WIN32
+    SetConsoleOutputCP(CP_UTF8);
+#endif
+
     std::string line;
     while (true) {
         std::cout << "> ";

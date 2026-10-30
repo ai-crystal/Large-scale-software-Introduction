@@ -1,9 +1,17 @@
 // 插件进程：从标准输入读一行，执行，往标准输出写一行
+#ifdef _WIN32
+#include <windows.h>
+#endif
+
 #include <cstdio>
 #include <iostream>
 #include <string>
 
 int main() {
+#ifdef _WIN32
+    SetConsoleOutputCP(CP_UTF8);
+#endif
+
     std::string line;
     while (std::getline(std::cin, line)) {
         if (line == "ping") {

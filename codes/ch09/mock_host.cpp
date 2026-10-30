@@ -1,4 +1,8 @@
 // 假宿主：加载指定插件，打印它注册的命令，不启动界面
+#ifdef _WIN32
+#include <windows.h>
+#endif
+
 #include "plugin_api.h"
 #include <cstdio>
 #include <string>
@@ -22,6 +26,10 @@ static void on_log(const char* message) {
 }
 
 int main(int argc, char** argv) {
+#ifdef _WIN32
+    SetConsoleOutputCP(CP_UTF8);
+#endif
+
     if (argc < 2) {
         std::printf("用法: mock_host <plugin.dll>\n");
         return 1;

@@ -1,3 +1,7 @@
+#ifdef _WIN32
+#include <windows.h>
+#endif
+
 #include "plugin_api.h"
 #include <cstdio>
 #include <cstring>
@@ -43,6 +47,10 @@ static void host_log_info(const char* message) {
 }
 
 int main() {
+#ifdef _WIN32
+    SetConsoleOutputCP(CP_UTF8);
+#endif
+
     PluginApi api{};
     api.size = sizeof(PluginApi);
     api.version = PLUGIN_API_VERSION;

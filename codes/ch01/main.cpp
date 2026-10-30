@@ -2,10 +2,18 @@
 // 编译（Windows）：cl /EHsc /std:c++17 /utf-8 main.cpp
 // 编译（Linux）：g++ -std=c++17 main.cpp -o app
 
+#ifdef _WIN32
+#include <windows.h>
+#endif
+
 #include <iostream>
 #include <string>
 
 int main() {
+#ifdef _WIN32
+    SetConsoleOutputCP(CP_UTF8);
+#endif
+
     std::string line;
     while (true) {
         std::cout << "> ";

@@ -1,11 +1,19 @@
 // 宿主：启动 plugin_host.exe，通过两根管道一问一答，带三秒超时
 // 本文件是 Windows 版本；Linux 的对应函数见同目录 README.md
+#ifdef _WIN32
+#include <windows.h>
+#endif
+
 #include <windows.h>
 #include <cstdio>
 #include <cstring>
 #include <string>
 
 int main() {
+#ifdef _WIN32
+    SetConsoleOutputCP(CP_UTF8);
+#endif
+
     SECURITY_ATTRIBUTES sa{};
     sa.nLength = sizeof(sa);
     sa.bInheritHandle = TRUE;

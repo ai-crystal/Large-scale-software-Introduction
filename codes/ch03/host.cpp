@@ -1,4 +1,8 @@
 // 第 3 章的宿主：扫描 plugins 目录，加载动态库，调用三个函数
+#ifdef _WIN32
+#include <windows.h>
+#endif
+
 #include <cstdio>
 #include <filesystem>
 #include <string>
@@ -19,6 +23,10 @@ static void close_lib(LibHandle h) { dlclose(h); }
 #endif
 
 int main() {
+#ifdef _WIN32
+    SetConsoleOutputCP(CP_UTF8);
+#endif
+
     std::vector<LibHandle> loaded;
 
     for (const auto& entry : std::filesystem::directory_iterator("plugins")) {
