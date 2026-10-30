@@ -19,6 +19,18 @@
 | `ch11` | 熔断器、RAII | `cmake -B build && cmake --build build` |
 | `ch12` | 完整最小外壳 | 构建后运行 `build/host/host` |
 
+## 一次编译全部章节
+
+在项目根目录运行：
+
+```bat
+build-codes.bat
+```
+
+所有章节会编译到根目录的 `build/` 下，一章一个子目录，例如 `build/ch01/app.exe`、`build/ch12/host.exe`。目标文件也放在对应子目录，不会写到源码旁边。
+
+也可以单独用 CMake 构建某一章，见下面的表格。
+
 ## 构建环境
 
 - Windows：Visual Studio 2019 或更新，开发者命令行里执行 `cl`

@@ -55,7 +55,28 @@
 
 - [术语表与延伸阅读](book/appendix/appendix.md)
 
-## 本地编译
+## 编译示例代码
+
+根目录的 `build-codes.bat` 会调用本机的 MSVC，把 `codes/` 下每一章的代码编译到 `build/`，一章一个子目录：
+
+```text
+build/ch01/app.exe
+build/ch02/app.exe
+build/ch03/host.exe        build/ch03/plugins/hello_plugin.dll
+build/ch05/host.exe        build/ch05/plugins/*.dll
+build/ch07/host.exe        build/ch07/plugin_host.exe
+build/ch09/mock_host.exe   build/ch09/test_registry.exe
+build/ch11/raii_demo.exe   build/ch11/breaker_demo.exe
+build/ch12/host.exe        build/ch12/plugins/*.dll
+```
+
+目标文件和可执行文件都放在 `build/` 里，不会写到源码目录。`build/` 是生成目录，不进入 Git。
+
+脚本会自动寻找 `vcvars64.bat`。如果找不到，说明没有安装 Visual Studio 的“使用 C++ 的桌面开发”工作负载。
+
+`ch08` 和 `ch10` 是 Python 工具，不需要编译，脚本里会打印用法。
+
+## 编译本书 PDF
 
 需要 Python 3.10 以上和 Chrome 或 Edge。克隆仓库后双击根目录的 `一键生成PDF.bat`，脚本会安装依赖、生成插图、排版 PDF，结果写到 `output/book.pdf`。
 
