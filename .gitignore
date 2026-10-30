@@ -10,3 +10,11 @@ output/*-new.pdf
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# C++ 构建产物
+*.obj
+*.exe
+*.lib
+*.exp
+*.pdb
+*.ilk
