@@ -21,6 +21,10 @@
 
 [下载完整 PDF](output/book.pdf)
 
+## 配套代码
+
+每章的完整代码在根目录的 `codes/` 下，按 `ch01` 到 `ch12` 分目录，可以直接编译运行。总览见 [codes/README.md](codes/README.md)。
+
 ## 目录
 
 **第一篇 从一段程序开始**

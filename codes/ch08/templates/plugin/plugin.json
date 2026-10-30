@@ -1,0 +1,9 @@
+{
+  "name": "{{name}}",
+  "version": "1.0.0",
+  "api": 1,
+  "template": "1.0.0",
+  "requires": {
+    "host": ">=1.0.0 <2.0.0"
+  }
+}
