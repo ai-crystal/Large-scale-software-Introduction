@@ -1,3 +1,8 @@
+// 第 12 章：notes 插件
+//
+// 只注册一条 note 命令，演示多个插件共存。
+// 它不订阅事件，所以不需要 on_event。
+
 #include "plugin_api.h"
 #include <cstdio>
 
@@ -14,7 +19,9 @@ extern "C" PLUGIN_EXPORT const char* plugin_name() { return "notes"; }
 
 extern "C" PLUGIN_EXPORT int plugin_init(const PluginApi* api) {
     if (!api || api->version != PLUGIN_API_VERSION) return 1;
-    for (const auto& cmd : kCommands) api->register_command(&cmd);
+    for (const auto& cmd : kCommands) {
+        api->register_command(&cmd);
+    }
     return 0;
 }
 
