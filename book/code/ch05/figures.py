@@ -60,6 +60,32 @@ def fig_5_2_pipeline():
 
     save(fig, os.path.join(ROOT, "images", "05", "fig5-2-pipeline.png"))
 
+
+
+def fig_5_3_lifecycle():
+    fig, ax = canvas(132, 78)
+
+    steps = [
+        ("宿主建一张空表", "宿主"),
+        ("加载插件，把 PluginApi 递过去", "宿主"),
+        ("插件注册命令，宿主填上 owner", "插件 → 宿主"),
+        ("用户输入 hello 世界", "用户"),
+        ("按名字查表，找到 Command", "宿主"),
+        ("调用 run 函数指针", "宿主"),
+        ("退出时按 owner 清理", "宿主"),
+    ]
+
+    y = 67
+    for index, (label, who) in enumerate(steps, 1):
+        box(ax, 8, y, 78, 7.5, f"{index}  {label}", fc="white", ec=BLUE, size=6.2)
+        text(ax, 92, y + 3.75, who, size=5.6, color=GRAY, ha="left")
+        if index < len(steps):
+            arrow(ax, (47, y), (47, y - 2.5), color=GRAY, shrink=0.2)
+        y -= 9.5
+
+    save(fig, os.path.join(ROOT, "images", "05", "fig5-3-lifecycle.png"))
+
 if __name__ == "__main__":
     fig_5_1()
     fig_5_2_pipeline()
+    fig_5_3_lifecycle()

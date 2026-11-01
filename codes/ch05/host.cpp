@@ -1,9 +1,6 @@
-#ifdef _WIN32
-#include <windows.h>
-#endif
-
 #include "plugin_api.h"
 #include "registry.h"
+
 #include <cstdio>
 #include <filesystem>
 #include <iostream>
@@ -26,6 +23,8 @@ static void close_lib(LibHandle h) { dlclose(h); }
 
 static CommandTable g_table;
 static std::string g_current_plugin;
+static std::vector<LibHandle> g_loaded;
+static std::vector<std::string> g_loaded_names;
 
 static void host_register_command(const PluginCommand* cmd) {
     if (!cmd || !cmd->name || !cmd->run) return;
@@ -45,6 +44,54 @@ static void run_help(const char*) {
     g_table.list();
 }
 
+static void load_all_plugins() {
+    PluginApi api{};
+    api.size = sizeof(PluginApi);
+    api.version = PLUGIN_API_VERSION;
+    api.register_command = host_register_command;
+    api.log_info = host_log_info;
+
+    for (const auto& entry : std::filesystem::directory_iterator("plugins")) {
+#ifdef _WIN32
+        if (entry.path().extension() != ".dll") continue;
+#else
+        if (entry.path().extension() != ".so") continue;
+#endif
+        LibHandle h = open_lib(entry.path().string());
+        if (!h) continue;
+
+        auto name = (const char*(*)())get_sym(h, "plugin_name");
+        auto init = (int(*)(const PluginApi*))get_sym(h, "plugin_init");
+        if (!name || !init) {
+            close_lib(h);
+            continue;
+        }
+
+        g_current_plugin = name();
+        if (init(&api) != 0) {
+            std::printf("插件初始化失败：%s\n", g_current_plugin.c_str());
+            g_table.remove_owner(g_current_plugin);
+            close_lib(h);
+            continue;
+        }
+
+        g_loaded.push_back(h);
+        g_loaded_names.push_back(g_current_plugin);
+    }
+    g_current_plugin.clear();
+}
+
+static void unload_all_plugins() {
+    for (size_t i = g_loaded.size(); i-- > 0; ) {
+        auto shut = (void(*)())get_sym(g_loaded[i], "plugin_shutdown");
+        if (shut) shut();
+        close_lib(g_loaded[i]);
+        g_table.remove_owner(g_loaded_names[i]);
+    }
+    g_loaded.clear();
+    g_loaded_names.clear();
+}
+
 int main() {
 #ifdef _WIN32
     SetConsoleOutputCP(CP_UTF8);
@@ -57,36 +104,7 @@ int main() {
     help.run = run_help;
     g_table.add(help);
 
-    PluginApi api{};
-    api.size = sizeof(PluginApi);
-    api.version = PLUGIN_API_VERSION;
-    api.register_command = host_register_command;
-    api.log_info = host_log_info;
-
-    std::vector<LibHandle> loaded;
-    for (const auto& entry : std::filesystem::directory_iterator("plugins")) {
-#ifdef _WIN32
-        if (entry.path().extension() != ".dll") continue;
-#else
-        if (entry.path().extension() != ".so") continue;
-#endif
-        LibHandle h = open_lib(entry.path().string());
-        if (!h) continue;
-
-        auto name = (const char*(*)())get_sym(h, "plugin_name");
-        auto init = (int(*)(const PluginApi*))get_sym(h, "plugin_init");
-        if (!name || !init) { close_lib(h); continue; }
-
-        g_current_plugin = name();
-        if (init(&api) != 0) {
-            std::printf("插件初始化失败：%s\n", g_current_plugin.c_str());
-            g_table.remove_owner(g_current_plugin);
-            close_lib(h);
-            continue;
-        }
-        loaded.push_back(h);
-    }
-    g_current_plugin.clear();
+    load_all_plugins();
 
     std::string line;
     while (true) {
@@ -109,12 +127,6 @@ int main() {
         cmd->run(args.c_str());
     }
 
-    for (auto it = loaded.rbegin(); it != loaded.rend(); ++it) {
-        auto shut = (void(*)())get_sym(*it, "plugin_shutdown");
-        if (shut) shut();
-        close_lib(*it);
-    }
-    g_table.remove_owner("hello");
-    g_table.remove_owner("notes");
+    unload_all_plugins();
     return 0;
 }

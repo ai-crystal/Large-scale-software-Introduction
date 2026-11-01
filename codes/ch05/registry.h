@@ -23,3 +23,22 @@ public:
 private:
     std::map<std::string, Command> commands_;
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
