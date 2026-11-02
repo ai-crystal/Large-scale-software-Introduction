@@ -99,8 +99,10 @@ if errorlevel 1 set "FAIL=1"
 echo.
 echo [ch06] 事件与钩子
 cl %CFLAGS% /Fo:"%OUT%\ch06\\" /LD codes\ch06\hello_plugin.cpp /Fe:"%OUT%\ch06\plugins\hello_plugin.dll"
+cl %CFLAGS% /Fo:"%OUT%\ch06\\" /LD codes\ch06\notes_plugin.cpp /Fe:"%OUT%\ch06\plugins\notes_plugin.dll"
 if errorlevel 1 set "FAIL=1"
-cl %CFLAGS% /Fo:"%OUT%\ch06\\" codes\ch06\host.cpp codes\ch06\events.cpp /Fe:"%OUT%\ch06\host.exe"
+if errorlevel 1 set "FAIL=1"
+cl %CFLAGS% /Fo:"%OUT%/ch06/" codes/ch06/host.cpp codes/ch06/registry.cpp codes/ch06/events.cpp /Fe:"%OUT%/ch06/host.exe"
 if errorlevel 1 set "FAIL=1"
 
 echo.
