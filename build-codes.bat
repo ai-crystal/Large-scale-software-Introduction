@@ -60,7 +60,8 @@ for %%C in (ch01 ch02 ch03 ch04 ch05 ch06 ch07 ch08 ch09 ch10 ch11 ch12) do (
 if not exist "%OUT%\ch03\plugins" mkdir "%OUT%\ch03\plugins"
 if not exist "%OUT%\ch04\plugins" mkdir "%OUT%\ch04\plugins"
 if not exist "%OUT%\ch05\plugins" mkdir "%OUT%\ch05\plugins"
-if not exist "%OUT%\ch06\plugins" mkdir "%OUT%\ch06\plugins"
+if not exist "%OUT%\ch06-1\plugins" mkdir "%OUT%\ch06-1\plugins"
+if not exist "%OUT%\ch06-2\plugins" mkdir "%OUT%\ch06-2\plugins"
 if not exist "%OUT%\ch12\plugins" mkdir "%OUT%\ch12\plugins"
 
 echo.
@@ -97,15 +98,30 @@ cl %CFLAGS% /Fo:"%OUT%\ch05\\" codes\ch05\host.cpp codes\ch05\registry.cpp /Fe:"
 if errorlevel 1 set "FAIL=1"
 
 echo.
-echo [ch06] 事件与钩子
-cl %CFLAGS% /Fo:"%OUT%\ch06\\" /LD codes\ch06\hello_plugin.cpp /Fe:"%OUT%\ch06\plugins\hello_plugin.dll"
-cl %CFLAGS% /Fo:"%OUT%\ch06\\" /LD codes\ch06\notes_plugin.cpp /Fe:"%OUT%\ch06\plugins\notes_plugin.dll"
+echo [ch06-1] 事件总线
+if not exist %OUT%\ch06-1\plugins mkdir %OUT%\ch06-1\plugins
+cl %CFLAGS% /Fo:"%OUT%\ch06-1\\" /LD codes\ch06-1\hello_plugin.cpp /Fe:"%OUT%\ch06-1\plugins\hello_plugin.dll"
 if errorlevel 1 set "FAIL=1"
+cl %CFLAGS% /Fo:"%OUT%\ch06-1\\" /LD codes\ch06-1\notes_plugin.cpp /Fe:"%OUT%\ch06-1\plugins\notes_plugin.dll"
 if errorlevel 1 set "FAIL=1"
-cl %CFLAGS% /Fo:"%OUT%/ch06/" codes/ch06/host.cpp codes/ch06/registry.cpp codes/ch06/events.cpp /Fe:"%OUT%/ch06/host.exe"
+cl %CFLAGS% /Fo:"%OUT%\ch06-1\\" codes\ch06-1\host.cpp codes\ch06-1\registry.cpp codes\ch06-1\events.cpp /Fe:"%OUT%\ch06-1\host.exe"
 if errorlevel 1 set "FAIL=1"
+pushd %OUT%\ch06-1
+(echo save& echo quit) | host.exe
+popd
 
-echo.
+echo [ch06-2] 钩子
+if not exist %OUT%\ch06-2\plugins mkdir %OUT%\ch06-2\plugins
+cl %CFLAGS% /Fo:"%OUT%\ch06-2\\" /LD codes\ch06-2\hello_plugin.cpp /Fe:"%OUT%\ch06-2\plugins\hello_plugin.dll"
+if errorlevel 1 set "FAIL=1"
+cl %CFLAGS% /Fo:"%OUT%\ch06-2\\" /LD codes\ch06-2\notes_plugin.cpp /Fe:"%OUT%\ch06-2\plugins\notes_plugin.dll"
+if errorlevel 1 set "FAIL=1"
+cl %CFLAGS% /Fo:"%OUT%\ch06-2\\" codes\ch06-2\host.cpp codes\ch06-2\registry.cpp codes\ch06-2\events.cpp /Fe:"%OUT%\ch06-2\host.exe"
+if errorlevel 1 set "FAIL=1"
+pushd %OUT%\ch06-2
+(echo save& echo quit) | host.exe
+popd
+
 echo [ch07] 进程隔离
 cl %CFLAGS% /Fo:"%OUT%\ch07\\" codes\ch07\plugin_host.cpp /Fe:"%OUT%\ch07\plugin_host.exe"
 if errorlevel 1 set "FAIL=1"
