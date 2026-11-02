@@ -37,8 +37,8 @@ static void* get_sym(LibHandle h, const char* n) { return dlsym(h, n); }
 static void close_lib(LibHandle h) { dlclose(h); }
 #endif
 
-static CommandTable g_table;              // 第 5 章的命令表
-static EventBus g_events;                 // 这一章新增的事件总线
+static CommandTable g_table;              // 命令表
+static EventBus g_events;                 // 新增的事件总线
 static std::string g_current_plugin;      // 当前插件：加载时或执行命令时
 static std::vector<LibHandle> g_loaded;
 static std::vector<std::string> g_loaded_names;
