@@ -38,5 +38,32 @@ def fig_6_1():
     save(fig, os.path.join(ROOT, "images", "06", "fig6-1-event-hook.png"))
 
 
+
+
+def fig_6_2_save_flow():
+    fig, ax = canvas(132, 82)
+
+    box(ax, 24, 70, 84, 8, "内容：第一行 / 第二行", fc="white", ec=BLUE, size=6.0)
+    box(ax, 24, 57, 84, 8, "钩子 1：在开头加一行注释", fc=GOLD_L, ec=GOLD, size=6.0)
+    box(ax, 24, 44, 84, 8, "钩子 2：去掉多余空行", fc=GOLD_L, ec=GOLD, size=6.0)
+    box(ax, 24, 31, 84, 8, "写文件（宿主自己完成）", fc="white", ec=BLUE, size=6.0)
+    box(ax, 24, 19, 84, 8, "事件总线：发布 file.saved", fc=BLUE_L, ec=BLUE,
+        size=6.0, weight="bold")
+
+    box(ax, 6, 3, 50, 8, "订阅者 A：更新索引", fc=GREEN_L, ec=GREEN, size=6.0)
+    box(ax, 76, 3, 50, 8, "订阅者 B：上传云端", fc=GREEN_L, ec=GREEN, size=6.0)
+
+    for y1, y2 in [(70, 65), (57, 52), (44, 39), (31, 27)]:
+        arrow(ax, (66, y1), (66, y2), color=GRAY, shrink=0.2)
+    arrow(ax, (60, 19), (32, 11), color=GREEN, shrink=0.2)
+    arrow(ax, (72, 19), (100, 11), color=GREEN, shrink=0.2)
+
+    text(ax, 6, 62, "钩子改内容", size=5.6, color=GOLD, ha="left")
+    text(ax, 6, 36, "内容确定后才写", size=5.6, color=GRAY, ha="left")
+    text(ax, 6, 23, "事件只通知", size=5.6, color=BLUE, ha="left")
+
+    save(fig, os.path.join(ROOT, "images", "06", "fig6-2-save-flow.png"))
+
 if __name__ == "__main__":
     fig_6_1()
+    fig_6_2_save_flow()
