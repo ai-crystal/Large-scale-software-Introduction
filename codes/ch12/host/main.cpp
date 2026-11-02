@@ -64,6 +64,7 @@ static void host_on_event(const char* type, void (*fn)(const char*, const char*)
 // 插件写日志时，宿主在这里接收。
 static void host_log(const char* message) {
     std::printf("[%s] %s\n", g_current_plugin.c_str(), message ? message : "");
+    std::fflush(stdout);
 }
 
 // 宿主自己的 help 命令。

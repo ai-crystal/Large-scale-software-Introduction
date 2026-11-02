@@ -22,6 +22,10 @@ extern "C" PLUGIN_EXPORT int plugin_init(const PluginApi* api) {
     for (const auto& cmd : kCommands) {
         api->register_command(&cmd);
     }
+
+    if (api->log_info) {
+        api->log_info("notes 插件已加载");
+    }
     return 0;
 }
 

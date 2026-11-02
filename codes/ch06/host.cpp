@@ -48,6 +48,7 @@ static void host_on_event(const char* type, void (*fn)(const char*, const char*)
 
 static void host_log(const char* message) {
     std::printf("[%s] %s\n", g_current_plugin.c_str(), message ? message : "");
+    std::fflush(stdout);
 }
 
 // 命令注册这里只打印一行，第 5 章已经详细实现过命令表。

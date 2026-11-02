@@ -35,6 +35,10 @@ extern "C" PLUGIN_EXPORT int plugin_init(const PluginApi* api) {
         api->register_command(&cmd);
     }
 
+    if (api->log_info) {
+        api->log_info("hello 插件已加载");
+    }
+
     // 订阅事件。
     api->on_event("file.saved", on_saved);
     return 0;

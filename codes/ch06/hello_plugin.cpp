@@ -17,6 +17,8 @@ static void run_hello(const char* args) {
     std::fflush(stdout);
 }
 
+static const PluginApi* g_api = nullptr;
+
 static const PluginCommand kCommands[] = {
     { "hello", "打印一句问候", run_hello },
 };
@@ -32,6 +34,14 @@ extern "C" PLUGIN_EXPORT int plugin_init(const PluginApi* api) {
         api->register_command(&cmd);
     }
 
+    // 保存工具箱，后面如果需要写日志可以用。
+    g_api = api;
+
+    // 用宿主提供的日志接口写一条，日志会自动带上插件名。
+    if (api->log_info) {
+        api->log_info("hello 插件已加载，准备订阅 file.saved");
+    }
+
     // 订阅事件。第二个参数是事件处理函数的地址。
     api->on_event("file.saved", on_saved);
 
@@ -39,4 +49,5 @@ extern "C" PLUGIN_EXPORT int plugin_init(const PluginApi* api) {
 }
 
 extern "C" PLUGIN_EXPORT void plugin_shutdown() {
+    g_api = nullptr;
 }
