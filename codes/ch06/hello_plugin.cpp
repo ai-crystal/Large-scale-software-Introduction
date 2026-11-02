@@ -6,7 +6,7 @@
 #include "plugin_api.h"
 #include <cstdio>
 
-// 事件回调。签名必须和 EventFn 一致。
+// 事件处理函数。签名必须和 EventFn 一致。
 static void on_saved(const char* type, const char* payload) {
     std::printf("[hello] 收到事件 %s：%s\n", type, payload ? payload : "");
     std::fflush(stdout);
@@ -32,7 +32,7 @@ extern "C" PLUGIN_EXPORT int plugin_init(const PluginApi* api) {
         api->register_command(&cmd);
     }
 
-    // 订阅事件。第二个参数是回调函数地址。
+    // 订阅事件。第二个参数是事件处理函数的地址。
     api->on_event("file.saved", on_saved);
 
     return 0;

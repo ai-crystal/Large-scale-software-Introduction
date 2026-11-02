@@ -18,7 +18,7 @@
 struct Listener {
     std::string owner;   // 哪个插件订阅的，卸载时按它清理
     int priority;        // 数字小的先执行
-    void (*fn)(const char* type, const char* payload);   // 回调函数
+    void (*fn)(const char* type, const char* payload);   // 事件处理函数的地址
 };
 
 class EventBus {

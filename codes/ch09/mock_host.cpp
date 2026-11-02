@@ -27,12 +27,12 @@
 #define LIB_SYM(h, n) dlsym(h, n)
 #endif
 
-// 插件注册命令时，回调到这里。
+// 插件注册命令时，宿主在这里接收。
 static void on_command(const PluginCommand* cmd) {
     std::printf("  命令: %-10s %s\n", cmd->name, cmd->help ? cmd->help : "");
 }
 
-// 插件写日志时，回调到这里。
+// 插件写日志时，宿主在这里接收。
 static void on_log(const char* message) {
     std::printf("  日志: %s\n", message ? message : "");
 }

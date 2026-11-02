@@ -44,7 +44,7 @@ static std::vector<LibHandle> g_loaded;      // 已加载的动态库
 static std::vector<std::string> g_loaded_names;
 static std::vector<std::function<bool(std::string&)>> g_before_save;   // 保存前钩子
 
-// 插件注册命令时回调这里。
+// 插件注册命令时，宿主在这里接收。
 static void host_register_command(const PluginCommand* cmd) {
     if (!cmd || !cmd->name || !cmd->run) return;
 
@@ -56,12 +56,12 @@ static void host_register_command(const PluginCommand* cmd) {
     g_table.add(command);
 }
 
-// 插件订阅事件时回调这里。
+// 插件订阅事件时，宿主在这里登记。
 static void host_on_event(const char* type, void (*fn)(const char*, const char*)) {
     g_events.on(type ? type : "", g_current_plugin, fn);
 }
 
-// 插件写日志时回调这里。
+// 插件写日志时，宿主在这里接收。
 static void host_log(const char* message) {
     std::printf("[%s] %s\n", g_current_plugin.c_str(), message ? message : "");
 }

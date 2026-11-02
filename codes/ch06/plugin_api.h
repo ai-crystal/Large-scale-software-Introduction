@@ -20,7 +20,7 @@ extern "C" {
 // 命令和之前一样：接收参数串，不返回值。
 typedef void (*CommandFn)(const char* args);
 
-// 事件回调：接收事件类型和数据，不返回值。
+// 事件处理函数：接收事件类型和数据，不返回值。
 // type 是事件名，比如 "file.saved"；payload 是附加信息。
 typedef void (*EventFn)(const char* type, const char* payload);
 

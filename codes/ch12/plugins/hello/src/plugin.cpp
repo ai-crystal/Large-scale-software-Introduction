@@ -8,7 +8,7 @@
 #include "plugin_api.h"
 #include <cstdio>
 
-// 事件回调：保存完成后打印一行。
+// 事件处理函数：保存完成后打印一行。
 static void on_saved(const char* type, const char* payload) {
     std::printf("[hello] 收到事件 %s：%s\n", type, payload ? payload : "");
     std::fflush(stdout);
