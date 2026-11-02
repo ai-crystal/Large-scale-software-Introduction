@@ -35,10 +35,11 @@ typedef struct PluginApi {
     uint32_t version;
     void (*register_command)(const PluginCommand* cmd);
 
-    // 订阅事件：type 是事件名，fn 是事件发生时调用的函数。
-    void (*on_event)(const char* type, EventFn fn);
-
     void (*log_info)(const char* message);
+
+    // 订阅事件：type 是事件名，fn 是事件发生时调用的函数。
+    // 新字段加在末尾，旧插件的 log_info 偏移不变。
+    void (*on_event)(const char* type, EventFn fn);
 } PluginApi;
 
 PLUGIN_EXPORT const char* plugin_name();
