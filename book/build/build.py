@@ -28,8 +28,9 @@ OUTPUT = os.path.join(ROOT, "output")
 OUT_PDF = os.path.join(OUTPUT, "book.pdf")
 STYLE = os.path.join(BOOK, "build", "style.css")
 
-TITLE = "大型软件是怎么长出来的"
-SUBTITLE = "用 C++ 从二十行代码到一个插件系统"
+TITLE = "大型软件开发技术"
+FULL_TITLE = "大型软件开发技术：入门篇"
+SUBTITLE = "入门篇 · 用 C++ 从二十行代码到一个插件系统"
 AUTHOR = "Dr. Dezeming"
 YEAR = "2026"
 VERSION = "1.0"
@@ -460,11 +461,11 @@ def main():
     out.insert_pdf(fitz.open(back))
 
     offset = 3
-    toc = [[1, TITLE, 1]]
+    toc = [[1, FULL_TITLE, 1]]
     for lvl, hid, txt in heads:
         toc.append([lvl, re.sub(r"<[^>]+>", "", txt), pages.get(hid, 1) + offset])
     out.set_toc(toc)
-    out.set_metadata({"title": TITLE, "author": AUTHOR, "subject": SUBTITLE,
+    out.set_metadata({"title": FULL_TITLE, "author": AUTHOR, "subject": SUBTITLE,
                       "keywords": "C++, 插件系统, 动态库, 事件总线, 钩子, 组件化"})
     try:
         out.subset_fonts(verbose=False)
