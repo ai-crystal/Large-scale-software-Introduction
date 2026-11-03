@@ -1,29 +1,26 @@
 // 第 7 章：宿主（Windows 版）
 //
-// 第 6 章的命令循环还在：用户输入命令，宿主处理。
-// 区别是 hello / ping 这两条命令不再由同进程的插件函数执行，
-// 而是通过管道发给 plugin_host.exe，等它回复。
+// 插件跑在独立进程 plugin_host.exe 里。
+// 启动后先读它发来的 register 消息，填进远程命令表；
+// 然后进入命令循环，用户输入的命令通过管道转发过去。
 //
-// 这样既保留了“程序接收命令”的主线，又能演示进程隔离：
-// 插件崩了或卡住，宿主可以把它杀掉，自己继续运行。
-//
-// Linux 的对应函数见同目录 README.md：
-//   CreatePipe -> pipe
-//   CreateProcess -> fork + execv
-//   ReadFile/WriteFile -> read/write
-//   WaitForSingleObject -> waitpid
-//   TerminateProcess -> kill
+// Linux 的对应函数见同目录 README.md。
 
 #include <windows.h>
 
 #include <cstdio>
 #include <cstring>
 #include <iostream>
+#include <map>
 #include <string>
 
 // 两根管道的宿主端
 static HANDLE g_in = nullptr;    // 宿主写，插件读
 static HANDLE g_out = nullptr;   // 插件写，宿主读
+
+// 远程命令表：命令名 -> 说明。
+// 这里存的是“转发信息”，不是函数指针。
+static std::map<std::string, std::string> g_remote;
 
 // 往插件写一行
 static bool write_line(const std::string& text) {
@@ -33,25 +30,43 @@ static bool write_line(const std::string& text) {
 }
 
 // 从插件读一行，最多等 timeout_ms 毫秒。
-// 用 PeekNamedPipe 轮询，避免阻塞的 ReadFile 永远等下去。
+// 逐字节读，遇到换行返回，避免把多条消息混在一起。
 static std::string read_line(int timeout_ms) {
-    std::string reply;
+    std::string line;
     DWORD start = GetTickCount();
 
     while (GetTickCount() - start < (DWORD)timeout_ms) {
         DWORD available = 0;
         if (PeekNamedPipe(g_out, nullptr, 0, nullptr, &available, nullptr) && available > 0) {
-            char buffer[256]{};
-            DWORD want = available < sizeof(buffer) - 1 ? available : (DWORD)sizeof(buffer) - 1;
+            char ch = 0;
             DWORD got = 0;
-            if (ReadFile(g_out, buffer, want, &got, nullptr) && got > 0) {
-                reply.append(buffer, got);
-                if (reply.find('\n') != std::string::npos) break;
+            if (ReadFile(g_out, &ch, 1, &got, nullptr) && got == 1) {
+                if (ch == '\n') return line;
+                if (ch != '\r') line.push_back(ch);
             }
+        } else {
+            Sleep(20);
         }
-        Sleep(20);
     }
-    return reply;
+    return line;
+}
+
+// 读插件启动时发来的注册消息，直到 ready。
+static bool load_remote_commands() {
+    while (true) {
+        std::string line = read_line(3000);
+        if (line.empty()) return false;
+        if (line == "ready") return true;
+
+        // 格式：register <名字> <说明>
+        if (line.rfind("register ", 0) == 0) {
+            std::string rest = line.substr(9);
+            size_t space = rest.find(' ');
+            std::string name = space == std::string::npos ? rest : rest.substr(0, space);
+            std::string desc = space == std::string::npos ? "" : rest.substr(space + 1);
+            g_remote[name] = desc;
+        }
+    }
 }
 
 int main() {
@@ -59,7 +74,7 @@ int main() {
     SetConsoleOutputCP(CP_UTF8);
 #endif
 
-    // 让子进程能继承管道把手
+    // 第一步：创建两根管道
     SECURITY_ATTRIBUTES sa{};
     sa.nLength = sizeof(sa);
     sa.bInheritHandle = TRUE;
@@ -69,7 +84,7 @@ int main() {
     CreatePipe(&in_read, &in_write, &sa, 0);
     CreatePipe(&out_read, &out_write, &sa, 0);
 
-    // 子进程的标准输入输出改成这两根管道
+    // 第二步：指定子进程的标准输入输出
     STARTUPINFOA si{};
     si.cb = sizeof(si);
     si.dwFlags = STARTF_USESTDHANDLES;
@@ -77,6 +92,7 @@ int main() {
     si.hStdOutput = out_write;
     si.hStdError = out_write;
 
+    // 第三步：启动子进程
     PROCESS_INFORMATION pi{};
     char cmd[] = "plugin_host.exe";
     if (!CreateProcessA(nullptr, cmd, nullptr, nullptr, TRUE, 0,
@@ -85,14 +101,21 @@ int main() {
         return 1;
     }
 
-    // 宿主不需要这两头
+    // 第四步：关掉宿主不需要的把手
     CloseHandle(in_read);
     CloseHandle(out_write);
 
     g_in = in_write;
     g_out = out_read;
 
-    // 命令循环：和第 5、6 章一样，只是命令被转发给另一个进程
+    // 读注册消息，宿主这时才知道插件支持哪些命令
+    if (!load_remote_commands()) {
+        std::printf("插件没有完成注册\n");
+        TerminateProcess(pi.hProcess, 1);
+        return 1;
+    }
+
+    // 第五步：命令循环。命令不再查本地函数表，而是查远程命令表。
     std::string line;
     while (true) {
         std::printf("> ");
@@ -105,12 +128,20 @@ int main() {
         if (line == "quit") break;
         if (line.empty()) continue;
 
-        if (line != "hello" && line != "ping") {
-            std::printf("未知命令：%s（试试 hello、ping、crash）\n", line.c_str());
+        if (line == "help") {
+            for (const auto& pair : g_remote) {
+                std::printf("  %-12s %s\n", pair.first.c_str(), pair.second.c_str());
+            }
             continue;
         }
 
-        // 发给插件进程
+        // 查远程命令表
+        if (g_remote.find(line) == g_remote.end()) {
+            std::printf("未知命令：%s（输入 help 查看）\n", line.c_str());
+            continue;
+        }
+
+        // 命令名发给插件进程
         if (!write_line(line)) {
             std::printf("管道已关闭\n");
             break;
@@ -123,11 +154,11 @@ int main() {
             TerminateProcess(pi.hProcess, 1);
             break;
         }
-        std::printf("%s", reply.c_str());
+        std::printf("%s\n", reply.c_str());
         std::fflush(stdout);
     }
 
-    // 客气温和地让它退出，等三秒，再强制结束
+    // 收尾：先请它退出，等三秒，再强制结束
     write_line("quit");
     WaitForSingleObject(pi.hProcess, 3000);
     TerminateProcess(pi.hProcess, 0);

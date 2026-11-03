@@ -1,9 +1,9 @@
 // 第 7 章：插件进程
 //
-// 这是一个独立的小程序，宿主会启动它，然后通过标准输入输出和它对话。
-// 它不知道宿主的存在，只做一件事：读一行，执行，写一行。
-//
-// 这样做的好处：它崩溃或死循环时，宿主不受影响，可以直接把它杀掉。
+// 启动时先“注册命令”，再进入对话循环。
+// 注册消息是普通文本，每行一条：
+//   register <命令名> <说明>
+// 全部发完后发一行 ready，告诉宿主可以开始接收用户命令了。
 
 #include <cstdio>
 #include <iostream>
@@ -18,25 +18,28 @@ int main() {
     SetConsoleOutputCP(CP_UTF8);
 #endif
 
+    // 注册这个进程能处理的命令。宿主收到后会填进自己的命令表。
+    std::printf("register hello 打印问候\n");
+    std::printf("register ping 测试通道\n");
+    std::printf("ready\n");
+    std::fflush(stdout);
+
     std::string line;
 
-    // 从标准输入读一行。宿主关掉管道时，getline 返回失败，循环结束。
+    // 对话循环：读一行，执行，写一行结果。
     while (std::getline(std::cin, line)) {
-        // 去掉行尾的 \r（Windows 管道可能带）。
         while (!line.empty() && (line.back() == '\r' || line.back() == ' ')) {
             line.pop_back();
         }
 
         if (line == "ping") {
-            // 最简单的应答，用来验证通道是通的。
             std::printf("pong\n");
             std::fflush(stdout);
         } else if (line == "hello") {
             std::printf("hello from plugin process\n");
             std::fflush(stdout);
         } else if (line == "crash") {
-            // 故意制造一次非法内存访问，用来观察宿主的反应。
-            // 这个进程会立刻退出，但宿主仍然活着。
+            // 故意制造非法内存访问，观察宿主能不能活下来
             volatile int* p = nullptr;
             *p = 1;
         } else if (line == "quit") {
