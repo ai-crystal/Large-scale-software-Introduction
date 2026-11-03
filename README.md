@@ -10,7 +10,7 @@
 
 ## 在线阅读
 
-完整站点：<https://feimos.github.io/cpp-plugin-book/>
+完整站点：<https://ai-crystal.github.io/Large-scale-software-Introduction/>
 
 也可以直接在 GitHub 上按章阅读：
 
