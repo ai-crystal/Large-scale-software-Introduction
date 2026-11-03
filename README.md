@@ -12,20 +12,11 @@
 
 完整站点：<https://ai-crystal.github.io/Large-scale-software-Introduction/>
 
-也可以直接在 GitHub 上按章阅读：
-
-- [前言](book/front/preface.md)
-- [第 1 章 二十行程序](book/chapters/ch01.md)
-
-## 下载
-
-[下载完整 PDF](output/book.pdf)
-
-## 配套代码
-
-每章的完整代码在根目录的 `codes/` 下，按 `ch01` 到 `ch12` 分目录，可以直接编译运行。总览见 [codes/README.md](codes/README.md)。
+也可以直接点开下面目录里的任意一章，在 GitHub 上阅读。
 
 ## 目录
+
+[前言](book/front/preface.md)
 
 **第一篇 从一段程序开始**
 
@@ -54,6 +45,14 @@
 **附录**
 
 - [术语表与延伸阅读](book/appendix/appendix.md)
+
+## 下载
+
+[下载完整 PDF](output/book.pdf)
+
+## 配套代码
+
+每章的完整代码在根目录的 `codes/` 下，按 `ch01` 到 `ch12` 分目录，可以直接编译运行。总览见 [codes/README.md](codes/README.md)。
 
 ## 编译示例代码
 
