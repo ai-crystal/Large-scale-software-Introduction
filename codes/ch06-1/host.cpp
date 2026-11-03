@@ -65,7 +65,7 @@ static void run_help(const char*) {
 }
 
 // 宿主命令：保存
-// 这一阶段没有钩子，流程只有两步：写文件，发事件。
+// 流程：写文件，发事件。
 static void run_save(const char*) {
     std::string content = "第一行\n第二行\n";
 
