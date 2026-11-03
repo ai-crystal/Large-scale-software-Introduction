@@ -57,7 +57,7 @@ def load_chapters():
         files.append(preface)
 
     chapters = sorted(glob.glob(os.path.join(BOOK, "chapters", "*.md")))
-    part_before = {1: "part1.md", 4: "part2.md", 8: "part3.md", 12: "part4.md"}
+    part_before = {1: "part1.md", 4: "part2.md", 8: "part3.md", 11: "part4.md"}
     for index, path in enumerate(chapters, 1):
         part_name = part_before.get(index)
         if part_name:
