@@ -259,15 +259,10 @@ def norm(s):
     return s
 
 
-def find_pages(pdf_path, heads):
+def find_pages(pdf_path, heads, start=0):
     import fitz
     doc = fitz.open(pdf_path)
     texts = [norm(doc[i].get_text()) for i in range(len(doc))]
-    start = 0
-    for i, t in enumerate(texts):
-        if "〖BODY〗" in t:
-            start = i
-            break
     pages, ptr, missing = {}, start, []
     for lvl, hid, txt in heads:
         key = norm(txt)
@@ -403,25 +398,21 @@ def build_special(name, html_body, out_pdf, zero_margin=True):
 def main():
     ensure_assets()
     chapters = load_chapters()
-    raw = "\n\n".join(chapters)
+    raw = chr(10).join(chapters)
     body = process_body(md2html(raw))
     heads, toc_rows = build_toc(body)
 
-    toc_html = (
-        '<div class="toc"><h1 style="break-before:auto">目录</h1>'
-        '<div class="toc-list">%s</div></div>' % toc_rows
-    )
-    full = toc_html + body
-
-    p1 = os.path.join(BUILD, "body_pass1.html")
+    # 1. 先排正文。正文单独成文件，页码从 1 开始，
+    #    书签和目录都直接引用这个页码，不再依赖正文里的隐藏标记。
+    p1 = os.path.join(BUILD, "body.html")
     with open(p1, "w", encoding="utf-8") as f:
-        f.write(page(TITLE, full))
-    pdf1 = os.path.join(BUILD, "body_pass1.pdf")
-    print("· 第一次排版 ...")
-    render(p1, pdf1, footer=True)
+        f.write(page(TITLE, body))
+    body_pdf = os.path.join(BUILD, "body.pdf")
+    print("· 排版正文 ...")
+    render(p1, body_pdf, footer=True)
 
     print("· 计算目录页码 ...")
-    pages, missing, start = find_pages(pdf1, heads)
+    pages, missing, _ = find_pages(body_pdf, heads)
     if missing:
         print("  未能定位的标题：", missing[:8])
 
@@ -429,13 +420,17 @@ def main():
         hid = m.group(1)
         return '<span class="pg" data-hid="%s">%s</span>' % (hid, pages.get(hid, ""))
 
-    full2 = re.sub(r'<span class="pg" data-hid="([^"]*)"></span>', fill, full)
-    p2 = os.path.join(BUILD, "body.html")
-    with open(p2, "w", encoding="utf-8") as f:
-        f.write(page(TITLE, full2))
-    pdf2 = os.path.join(BUILD, "body.pdf")
-    print("· 第二次排版 ...")
-    render(p2, pdf2, footer=True)
+    toc_rows_filled = re.sub(r'<span class="pg" data-hid="([^"]*)"></span>', fill, toc_rows)
+    toc_html = (
+        '<div class="toc"><h1 style="break-before:auto">目录</h1>'
+        '<div class="toc-list">%s</div></div>' % toc_rows_filled
+    )
+    ptoc = os.path.join(BUILD, "toc.html")
+    with open(ptoc, "w", encoding="utf-8") as f:
+        f.write(page(TITLE, toc_html))
+    toc_pdf = os.path.join(BUILD, "toc.pdf")
+    print("· 排版目录 ...")
+    render(ptoc, toc_pdf, footer=False)
 
     print("· 生成封面与辅文 ...")
     cover = build_special("cover", COVER.format(cover=COVER_ART, title=TITLE,
@@ -456,11 +451,13 @@ def main():
     out.insert_pdf(fitz.open(cover))
     out.insert_pdf(fitz.open(titlepage))
     out.insert_pdf(fitz.open(copyright_pdf))
-    body_doc = fitz.open(pdf2)
+    toc_doc = fitz.open(toc_pdf)
+    out.insert_pdf(toc_doc)
+    body_doc = fitz.open(body_pdf)
     out.insert_pdf(body_doc)
     out.insert_pdf(fitz.open(back))
 
-    offset = 3
+    offset = 3 + len(toc_doc)
     toc = [[1, FULL_TITLE, 1]]
     for lvl, hid, txt in heads:
         toc.append([lvl, re.sub(r"<[^>]+>", "", txt), pages.get(hid, 1) + offset])
@@ -487,7 +484,7 @@ def main():
             target = alt
     except Exception as e:
         out.close()
-        raise SystemExit("保存 PDF 失败：%s\n多半是文件正被阅读器占用，关掉后重试。" % e)
+        raise SystemExit("保存 PDF 失败：%s，多半是文件正被阅读器占用，关掉后重试。" % e)
     if os.path.exists(tmp):
         try:
             os.remove(tmp)
@@ -505,7 +502,7 @@ def main():
     print("完成：%s  共 %d 页" % (target, page_count))
 
     if "--keep" not in sys.argv:
-        for name in ("body_pass1.html", "body_pass1.pdf", "body.html"):
+        for name in ("body.html", "toc.html"):
             path = os.path.join(BUILD, name)
             if os.path.exists(path):
                 try:
