@@ -1,0 +1,33 @@
+{
+  "front": [
+    "preface.md"
+  ],
+  "parts": [
+    {
+      "before": "ch01.md",
+      "file": "part1.md"
+    },
+    {
+      "before": "ch05.md",
+      "file": "part2.md"
+    },
+    {
+      "before": "ch09.md",
+      "file": "part3.md"
+    }
+  ],
+  "chapters": [
+    "ch01.md",
+    "ch02.md",
+    "ch03.md",
+    "ch04.md",
+    "ch05.md",
+    "ch06.md",
+    "ch07.md",
+    "ch08.md",
+    "ch09.md",
+    "ch10.md",
+    "ch11.md"
+  ],
+  "appendix": []
+}

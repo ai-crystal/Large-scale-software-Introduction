@@ -1,0 +1,22 @@
+{
+  "name": "vol3-engineering",
+  "title": "大型软件开发技术",
+  "volume": "工程篇",
+  "full_title": "大型软件开发技术：工程篇",
+  "subtitle": "组件模板、分发生态与稳定运行",
+  "series": "LARGE-SCALE SOFTWARE",
+  "pdf": "vol3-engineering.pdf",
+  "author": "Dr. Dezeming",
+  "year": "2026",
+  "version": "1.0",
+  "toc_sections": false,
+  "cover_color": "#7fb069",
+  "accent_dark": "#4a6b3c",
+  "cover_bg": "logo11.png",
+  "cover_blurb": "从一条生成命令讲到生态治理<br>\n       模板、独立开发、打包签名、灰度更新与故障恢复",
+  "back_lead": "能被别人持续使用的系统，<br>才算真正做完。",
+  "back_text": "本册把架构变成工程：怎样用一条命令生成组件骨架，怎样让组件脱离宿主独立开发与测试，怎样打包、签名、分发、灰度、回滚，出问题时怎样定位和恢复。",
+  "back_tags": "组件模板　·　契约包　·　独立开发<br>\n       打包签名　·　灰度回滚　·　可观测性",
+  "intro": "本册讨论可扩展系统的工程化：组件模板与生成器、独立开发与 CI、打包签名与分发、灰度更新、故障恢复与可观测性。",
+  "keywords": "组件模板, 契约包, 持续集成, 代码签名, 灰度发布, 可观测性"
+}

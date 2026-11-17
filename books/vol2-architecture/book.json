@@ -1,0 +1,22 @@
+{
+  "name": "vol2-architecture",
+  "title": "大型软件开发技术",
+  "volume": "架构篇",
+  "full_title": "大型软件开发技术：架构篇",
+  "subtitle": "可扩展系统的内核、契约与协作机制",
+  "series": "LARGE-SCALE SOFTWARE",
+  "pdf": "vol2-architecture.pdf",
+  "author": "Dr. Dezeming",
+  "year": "2026",
+  "version": "1.0",
+  "toc_sections": false,
+  "cover_color": "#5aa9c9",
+  "accent_dark": "#2f6f8a",
+  "cover_bg": "logo7.png",
+  "cover_blurb": "从模块边界讲到服务契约<br>\n       内核、扩展点、事件、隔离与公共能力的分层设计",
+  "back_lead": "架构不是画出来的图，<br>是一组能被反复改动的边界。",
+  "back_text": "本册讲一个可扩展系统的骨架：内核留哪些机制、契约怎么定版本、事件与钩子如何分工、插件放在哪个进程、外壳向插件提供哪些公共能力。每一章都配可运行的代码，也说明设计取舍。",
+  "back_tags": "微内核　·　扩展点　·　契约版本<br>\n       事件总线　·　进程隔离　·　渲染服务",
+  "intro": "本册讨论可扩展系统的结构：内核与扩展点、事件与钩子、进程与隔离、公共服务与渲染接口，以及这些选择背后的取舍。",
+  "keywords": "微内核, 扩展点, 事件总线, 进程隔离, 渲染服务, 插件架构"
+}

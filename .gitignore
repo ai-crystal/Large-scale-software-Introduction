@@ -3,7 +3,6 @@
 _private/
 papers/
 
-book/build/__pycache__/
 **/__pycache__/
 *.pyc
 *.tmp

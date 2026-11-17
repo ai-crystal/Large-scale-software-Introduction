@@ -1,25 +1,55 @@
 - [封面](/#/)
-- [前言](book/front/preface.md)
+- [首页](README.md)
 
-- **第一篇 从一段程序开始**
-  - [第 1 章 二十行程序](book/chapters/ch01.md)
-  - [第 2 章 把代码拆开](book/chapters/ch02.md)
-  - [第 3 章 第一个插件](book/chapters/ch03.md)
+- **入门篇**
+  - [本册首页](books/vol1-basics/README.md)
+  - [前言](books/vol1-basics/front/preface.md)
+  - [第 1 章 二十行程序](books/vol1-basics/chapters/ch01.md)
+  - [第 2 章 把代码拆开](books/vol1-basics/chapters/ch02.md)
+  - [第 3 章 第一个插件](books/vol1-basics/chapters/ch03.md)
+  - [第 4 章 接口就是合同](books/vol1-basics/chapters/ch04.md)
+  - [第 5 章 注册表与扩展点](books/vol1-basics/chapters/ch05.md)
+  - [第 6 章 事件与钩子](books/vol1-basics/chapters/ch06.md)
+  - [第 7 章 插件出错怎么办](books/vol1-basics/chapters/ch07.md)
+  - [第 8 章 一条命令生成插件](books/vol1-basics/chapters/ch08.md)
+  - [第 9 章 让插件独立开发](books/vol1-basics/chapters/ch09.md)
+  - [第 10 章 打包、分发与更新](books/vol1-basics/chapters/ch10.md)
+  - [第 11 章 让它稳定运行](books/vol1-basics/chapters/ch11.md)
+  - [第 12 章 把整个系统跑起来](books/vol1-basics/chapters/ch12.md)
+  - [附录 术语表与延伸阅读](books/vol1-basics/appendix/appendix.md)
+  - [下载入门篇 PDF](output/vol1-basics.pdf ':ignore')
 
-- **第二篇 把边界建起来**
-  - [第 4 章 接口就是合同](book/chapters/ch04.md)
-  - [第 5 章 注册表与扩展点](book/chapters/ch05.md)
-  - [第 6 章 事件与钩子](book/chapters/ch06.md)
-  - [第 7 章 插件出错怎么办](book/chapters/ch07.md)
+- **架构篇**
+  - [本册首页](books/vol2-architecture/README.md)
+  - [前言](books/vol2-architecture/front/preface.md)
+  - [第 1 章 插件变多之后](books/vol2-architecture/chapters/ch01.md)
+  - [第 2 章 内核的边界](books/vol2-architecture/chapters/ch02.md)
+  - [第 3 章 扩展点的三种形态](books/vol2-architecture/chapters/ch03.md)
+  - [第 4 章 契约的版本](books/vol2-architecture/chapters/ch04.md)
+  - [第 5 章 事件变多之后](books/vol2-architecture/chapters/ch05.md)
+  - [第 6 章 插件跑在哪里](books/vol2-architecture/chapters/ch06.md)
+  - [第 7 章 服务注册表](books/vol2-architecture/chapters/ch07.md)
+  - [第 8 章 渲染服务的取舍](books/vol2-architecture/chapters/ch08.md)
+  - [第 9 章 把结构装回去](books/vol2-architecture/chapters/ch09.md)
+  - [第 10 章 结构要付多少代价](books/vol2-architecture/chapters/ch10.md)
+  - [第 11 章 什么时候继续演进](books/vol2-architecture/chapters/ch11.md)
+  - [下载架构篇 PDF](output/vol2-architecture.pdf ':ignore')
 
-- **第三篇 把代码变成工程**
-  - [第 8 章 一条命令生成插件](book/chapters/ch08.md)
-  - [第 9 章 让插件独立开发](book/chapters/ch09.md)
-  - [第 10 章 打包、分发与更新](book/chapters/ch10.md)
+- **工程篇**
+  - [本册首页](books/vol3-engineering/README.md)
+  - [前言](books/vol3-engineering/front/preface.md)
+  - [第 1 章 模板解决的不是省事](books/vol3-engineering/chapters/ch01.md)
+  - [第 2 章 一条命令生成组件](books/vol3-engineering/chapters/ch02.md)
+  - [第 3 章 契约包](books/vol3-engineering/chapters/ch03.md)
+  - [第 4 章 假宿主](books/vol3-engineering/chapters/ch04.md)
+  - [第 5 章 持续集成](books/vol3-engineering/chapters/ch05.md)
+  - [第 6 章 构建产物](books/vol3-engineering/chapters/ch06.md)
+  - [第 7 章 签名](books/vol3-engineering/chapters/ch07.md)
+  - [第 8 章 分发与更新](books/vol3-engineering/chapters/ch08.md)
+  - [第 9 章 可观测性](books/vol3-engineering/chapters/ch09.md)
+  - [第 10 章 从一条命令到用户手里](books/vol3-engineering/chapters/ch10.md)
+  - [第 11 章 维护与停止](books/vol3-engineering/chapters/ch11.md)
+  - [下载工程篇 PDF](output/vol3-engineering.pdf ':ignore')
 
-- **第四篇 收拢**
-  - [第 11 章 让它稳定运行](book/chapters/ch11.md)
-  - [第 12 章 把整个系统跑起来](book/chapters/ch12.md)
-
-- **附录**
-  - [术语表与延伸阅读](book/appendix/appendix.md)
+- **关于**
+  - [GitHub 仓库](https://github.com/ai-crystal/Large-scale-software-Introduction)

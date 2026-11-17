@@ -66,45 +66,45 @@ if not exist "%OUT%\ch12\plugins" mkdir "%OUT%\ch12\plugins"
 
 echo.
 echo [ch01] 二十行程序
-cl %CFLAGS% /Fo:"%OUT%\ch01\\" codes\ch01\main.cpp /Fe:"%OUT%\ch01\app.exe"
+cl %CFLAGS% /Fo:"%OUT%\ch01\\" codes\vol1\ch01\main.cpp /Fe:"%OUT%\ch01\app.exe"
 if errorlevel 1 set "FAIL=1"
 
 echo.
 echo [ch02] 函数与多文件编译
-cl %CFLAGS% /Fo:"%OUT%\ch02\\" codes\ch02\main.cpp codes\ch02\commands.cpp /Fe:"%OUT%\ch02\app.exe"
+cl %CFLAGS% /Fo:"%OUT%\ch02\\" codes\vol1\ch02\main.cpp codes\vol1\ch02\commands.cpp /Fe:"%OUT%\ch02\app.exe"
 if errorlevel 1 set "FAIL=1"
 
 echo.
 echo [ch03] 第一个插件
-cl %CFLAGS% /Fo:"%OUT%\ch03\\" /LD codes\ch03\hello_plugin.cpp /Fe:"%OUT%\ch03\plugins\hello_plugin.dll"
+cl %CFLAGS% /Fo:"%OUT%\ch03\\" /LD codes\vol1\ch03\hello_plugin.cpp /Fe:"%OUT%\ch03\plugins\hello_plugin.dll"
 if errorlevel 1 set "FAIL=1"
-cl %CFLAGS% /Fo:"%OUT%\ch03\\" codes\ch03\host.cpp /Fe:"%OUT%\ch03\host.exe"
+cl %CFLAGS% /Fo:"%OUT%\ch03\\" codes\vol1\ch03\host.cpp /Fe:"%OUT%\ch03\host.exe"
 if errorlevel 1 set "FAIL=1"
 
 echo.
 echo [ch04] 契约与命令注册
-cl %CFLAGS% /Fo:"%OUT%\ch04\\" /LD codes\ch04\hello_plugin.cpp /Fe:"%OUT%\ch04\plugins\hello_plugin.dll"
+cl %CFLAGS% /Fo:"%OUT%\ch04\\" /LD codes\vol1\ch04\hello_plugin.cpp /Fe:"%OUT%\ch04\plugins\hello_plugin.dll"
 if errorlevel 1 set "FAIL=1"
-cl %CFLAGS% /Fo:"%OUT%\ch04\\" codes\ch04\host.cpp /Fe:"%OUT%\ch04\host.exe"
+cl %CFLAGS% /Fo:"%OUT%\ch04\\" codes\vol1\ch04\host.cpp /Fe:"%OUT%\ch04\host.exe"
 if errorlevel 1 set "FAIL=1"
 
 echo.
 echo [ch05] 注册表与卸载
-cl %CFLAGS% /Fo:"%OUT%\ch05\\" /LD codes\ch05\hello_plugin.cpp /Fe:"%OUT%\ch05\plugins\hello_plugin.dll"
+cl %CFLAGS% /Fo:"%OUT%\ch05\\" /LD codes\vol1\ch05\hello_plugin.cpp /Fe:"%OUT%\ch05\plugins\hello_plugin.dll"
 if errorlevel 1 set "FAIL=1"
-cl %CFLAGS% /Fo:"%OUT%\ch05\\" /LD codes\ch05\notes_plugin.cpp /Fe:"%OUT%\ch05\plugins\notes_plugin.dll"
+cl %CFLAGS% /Fo:"%OUT%\ch05\\" /LD codes\vol1\ch05\notes_plugin.cpp /Fe:"%OUT%\ch05\plugins\notes_plugin.dll"
 if errorlevel 1 set "FAIL=1"
-cl %CFLAGS% /Fo:"%OUT%\ch05\\" codes\ch05\host.cpp codes\ch05\registry.cpp /Fe:"%OUT%\ch05\host.exe"
+cl %CFLAGS% /Fo:"%OUT%\ch05\\" codes\vol1\ch05\host.cpp codes\vol1\ch05\registry.cpp /Fe:"%OUT%\ch05\host.exe"
 if errorlevel 1 set "FAIL=1"
 
 echo.
 echo [ch06-1] 事件总线
 if not exist %OUT%\ch06-1\plugins mkdir %OUT%\ch06-1\plugins
-cl %CFLAGS% /Fo:"%OUT%\ch06-1\\" /LD codes\ch06-1\hello_plugin.cpp /Fe:"%OUT%\ch06-1\plugins\hello_plugin.dll"
+cl %CFLAGS% /Fo:"%OUT%\ch06-1\\" /LD codes\vol1\ch06-1\hello_plugin.cpp /Fe:"%OUT%\ch06-1\plugins\hello_plugin.dll"
 if errorlevel 1 set "FAIL=1"
-cl %CFLAGS% /Fo:"%OUT%\ch06-1\\" /LD codes\ch06-1\notes_plugin.cpp /Fe:"%OUT%\ch06-1\plugins\notes_plugin.dll"
+cl %CFLAGS% /Fo:"%OUT%\ch06-1\\" /LD codes\vol1\ch06-1\notes_plugin.cpp /Fe:"%OUT%\ch06-1\plugins\notes_plugin.dll"
 if errorlevel 1 set "FAIL=1"
-cl %CFLAGS% /Fo:"%OUT%\ch06-1\\" codes\ch06-1\host.cpp codes\ch06-1\registry.cpp codes\ch06-1\events.cpp /Fe:"%OUT%\ch06-1\host.exe"
+cl %CFLAGS% /Fo:"%OUT%\ch06-1\\" codes\vol1\ch06-1\host.cpp codes\vol1\ch06-1\registry.cpp codes\vol1\ch06-1\events.cpp /Fe:"%OUT%\ch06-1\host.exe"
 if errorlevel 1 set "FAIL=1"
 pushd %OUT%\ch06-1
 (echo save& echo quit) | host.exe
@@ -112,51 +112,51 @@ popd
 
 echo [ch06-2] 钩子
 if not exist %OUT%\ch06-2\plugins mkdir %OUT%\ch06-2\plugins
-cl %CFLAGS% /Fo:"%OUT%\ch06-2\\" /LD codes\ch06-2\hello_plugin.cpp /Fe:"%OUT%\ch06-2\plugins\hello_plugin.dll"
+cl %CFLAGS% /Fo:"%OUT%\ch06-2\\" /LD codes\vol1\ch06-2\hello_plugin.cpp /Fe:"%OUT%\ch06-2\plugins\hello_plugin.dll"
 if errorlevel 1 set "FAIL=1"
-cl %CFLAGS% /Fo:"%OUT%\ch06-2\\" /LD codes\ch06-2\notes_plugin.cpp /Fe:"%OUT%\ch06-2\plugins\notes_plugin.dll"
+cl %CFLAGS% /Fo:"%OUT%\ch06-2\\" /LD codes\vol1\ch06-2\notes_plugin.cpp /Fe:"%OUT%\ch06-2\plugins\notes_plugin.dll"
 if errorlevel 1 set "FAIL=1"
-cl %CFLAGS% /Fo:"%OUT%\ch06-2\\" codes\ch06-2\host.cpp codes\ch06-2\registry.cpp codes\ch06-2\events.cpp /Fe:"%OUT%\ch06-2\host.exe"
+cl %CFLAGS% /Fo:"%OUT%\ch06-2\\" codes\vol1\ch06-2\host.cpp codes\vol1\ch06-2\registry.cpp codes\vol1\ch06-2\events.cpp /Fe:"%OUT%\ch06-2\host.exe"
 if errorlevel 1 set "FAIL=1"
 pushd %OUT%\ch06-2
 (echo save& echo quit) | host.exe
 popd
 
 echo [ch07] 进程隔离
-cl %CFLAGS% /Fo:"%OUT%\ch07\\" codes\ch07\plugin_host.cpp /Fe:"%OUT%\ch07\plugin_host.exe"
+cl %CFLAGS% /Fo:"%OUT%\ch07\\" codes\vol1\ch07\plugin_host.cpp /Fe:"%OUT%\ch07\plugin_host.exe"
 if errorlevel 1 set "FAIL=1"
-cl %CFLAGS% /Fo:"%OUT%\ch07\\" codes\ch07\host.cpp /Fe:"%OUT%\ch07\host.exe"
+cl %CFLAGS% /Fo:"%OUT%\ch07\\" codes\vol1\ch07\host.cpp /Fe:"%OUT%\ch07\host.exe"
 if errorlevel 1 set "FAIL=1"
 
 echo.
 echo [ch08] 模板与生成器（脚本，不需要编译）
-echo        用 python codes\ch08\tools\new_plugin.py ^<name^> 生成新插件
+echo        用 python codes\vol1\ch08\tools\new_plugin.py ^<name^> 生成新插件
 
 echo.
 echo [ch09] 假宿主与测试
-cl %CFLAGS% /Fo:"%OUT%\ch09\\" codes\ch09\mock_host.cpp /Icodes\ch09\sdk\include /Fe:"%OUT%\ch09\mock_host.exe"
+cl %CFLAGS% /Fo:"%OUT%\ch09\\" codes\vol1\ch09\mock_host.cpp /Icodes\vol1\ch09\sdk\include /Fe:"%OUT%\ch09\mock_host.exe"
 if errorlevel 1 set "FAIL=1"
-cl %CFLAGS% /Fo:"%OUT%\ch09\\" codes\ch09\tests\test_registry.cpp codes\ch09\registry.cpp /Icodes\ch09\sdk\include /Fe:"%OUT%\ch09\test_registry.exe"
+cl %CFLAGS% /Fo:"%OUT%\ch09\\" codes\vol1\ch09\tests\test_registry.cpp codes\vol1\ch09\registry.cpp /Icodes\vol1\ch09\sdk\include /Fe:"%OUT%\ch09\test_registry.exe"
 if errorlevel 1 set "FAIL=1"
 
 echo.
 echo [ch10] 打包与校验（脚本，不需要编译）
-echo        用 python codes\ch10\pack.py ^<dir^> ^<out.zip^>
+echo        用 python codes\vol1\ch10\pack.py ^<dir^> ^<out.zip^>
 
 echo.
 echo [ch11] 熔断与 RAII
-cl %CFLAGS% /Fo:"%OUT%\ch11\\" codes\ch11\raii_demo.cpp /Fe:"%OUT%\ch11\raii_demo.exe"
+cl %CFLAGS% /Fo:"%OUT%\ch11\\" codes\vol1\ch11\raii_demo.cpp /Fe:"%OUT%\ch11\raii_demo.exe"
 if errorlevel 1 set "FAIL=1"
-cl %CFLAGS% /Fo:"%OUT%\ch11\\" codes\ch11\breaker_demo.cpp /Fe:"%OUT%\ch11\breaker_demo.exe"
+cl %CFLAGS% /Fo:"%OUT%\ch11\\" codes\vol1\ch11\breaker_demo.cpp /Fe:"%OUT%\ch11\breaker_demo.exe"
 if errorlevel 1 set "FAIL=1"
 
 echo.
 echo [ch12] 完整最小外壳
-cl %CFLAGS% /Fo:"%OUT%\ch12\\" /LD codes\ch12\plugins\hello\src\plugin.cpp /Icodes\ch12\sdk\include /Fe:"%OUT%\ch12\plugins\hello.dll"
+cl %CFLAGS% /Fo:"%OUT%\ch12\\" /LD codes\vol1\ch12\plugins\hello\src\plugin.cpp /Icodes\vol1\ch12\sdk\include /Fe:"%OUT%\ch12\plugins\hello.dll"
 if errorlevel 1 set "FAIL=1"
-cl %CFLAGS% /Fo:"%OUT%\ch12\\" /LD codes\ch12\plugins\notes\src\plugin.cpp /Icodes\ch12\sdk\include /Fe:"%OUT%\ch12\plugins\notes.dll"
+cl %CFLAGS% /Fo:"%OUT%\ch12\\" /LD codes\vol1\ch12\plugins\notes\src\plugin.cpp /Icodes\vol1\ch12\sdk\include /Fe:"%OUT%\ch12\plugins\notes.dll"
 if errorlevel 1 set "FAIL=1"
-cl %CFLAGS% /Fo:"%OUT%\ch12\\" codes\ch12\host\main.cpp codes\ch12\host\registry.cpp codes\ch12\host\events.cpp /Icodes\ch12\sdk\include /Fe:"%OUT%\ch12\host.exe"
+cl %CFLAGS% /Fo:"%OUT%\ch12\\" codes\vol1\ch12\host\main.cpp codes\vol1\ch12\host\registry.cpp codes\vol1\ch12\host\events.cpp /Icodes\vol1\ch12\sdk\include /Fe:"%OUT%\ch12\host.exe"
 if errorlevel 1 set "FAIL=1"
 
 echo.

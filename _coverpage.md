@@ -1,11 +1,13 @@
-# 大型软件开发技术：入门篇
+# 大型软件开发技术
 
-> 用 C++ 从二十行代码到一个插件系统
+> 从二十行 C++ 代码到一个可交付的插件系统
 
-从一段只会打印命令的程序开始，拆函数、拆文件、装插件、建契约，一步步长出可扩展的外壳。
+三册书，一条主线：入门、架构、工程。
 
 **Dr. Dezeming**
 
-[开始阅读](/#/book/front/preface)
+[开始阅读](books/vol1-basics/README.md)
 
-<a class="cover-download" href="output/book.pdf" target="_blank" rel="noopener" data-router-ignore>下载完整 PDF</a>
+<a class="cover-download" href="output/vol1-basics.pdf" target="_blank" rel="noopener" data-router-ignore>入门篇 PDF</a>
+<a class="cover-download" href="output/vol2-architecture.pdf" target="_blank" rel="noopener" data-router-ignore>架构篇 PDF</a>
+<a class="cover-download" href="output/vol3-engineering.pdf" target="_blank" rel="noopener" data-router-ignore>工程篇 PDF</a>

@@ -1,85 +1,57 @@
-# 大型软件开发技术：入门篇
+# 大型软件开发技术
 
-> 用 C++ 从二十行代码到一个插件系统
+一套讲可扩展系统的书。从一段二十行的 C++ 程序开始，逐步做出一个能加载插件、能隔离故障、能打包更新的系统，再往下讨论架构取舍和工程交付。
 
 作者：Dr. Dezeming
 
-这本书从一段二十行的 C++ 程序开始，一步一步把它改造成能加载插件、能隔离故障、能打包更新的小系统。每一章只增加一个概念，每个概念都落到能编译、能运行的代码里。
+## 三册
 
-不假设你懂 Java，也不假设你学过操作系统。进程、链接、动态库、序列化这些词第一次出现时，都会先用日常经验讲明白。
+| 册 | 主题 | 页数 | 在线阅读 | PDF |
+|---|---|---|---|---|
+| 入门篇 | 用 C++ 从二十行代码到一个插件系统 | 142 | [开始阅读](books/vol1-basics/README.md) | [下载](output/vol1-basics.pdf) |
+| 架构篇 | 可扩展系统的内核、契约与协作机制 | 73 | [开始阅读](books/vol2-architecture/README.md) | [下载](output/vol2-architecture.pdf) |
+| 工程篇 | 组件模板、分发生态与稳定运行 | 67 | [开始阅读](books/vol3-engineering/README.md) | [下载](output/vol3-engineering.pdf) |
+
+## 三册的关系
+
+**入门篇**从一段会打印命令的程序开始，拆函数、拆文件、装插件、建契约，一路做到能打包更新的小系统。每一章只加一个概念，代码都能编译运行。适合没有大型项目经验、想弄清插件系统到底怎么运转的读者。
+
+**架构篇**接着入门篇的系统往下走，处理插件变多之后的问题：命名冲突、故障扩散、插件之间怎么互相调用、契约怎么演进、插件跑在哪个进程。这一册的很多决定没有唯一答案，书里会说明每种方案的适用条件。
+
+**工程篇**把结构变成可以交付的工程：用模板固定组件结构，用生成器创建骨架，用假宿主独立测试，用签名和灰度把插件安全地送到用户手里，用日志和指标定位问题。
+
+三册共用一套代码和例子，建议按顺序读。如果只想解决具体问题，架构篇和工程篇也可以单独看，每册开头会说明前置。
 
 ## 在线阅读
 
 完整站点：<https://ai-crystal.github.io/Large-scale-software-Introduction/>
 
-也可以直接点开下面目录里的任意一章，在 GitHub 上阅读。
-
-## 目录
-
-[前言](book/front/preface.md)
-
-**第一篇 从一段程序开始**
-
-1. [二十行程序](book/chapters/ch01.md)
-2. [把代码拆开](book/chapters/ch02.md)
-3. [第一个插件](book/chapters/ch03.md)
-
-**第二篇 把边界建起来**
-
-4. [接口就是合同](book/chapters/ch04.md)
-5. [注册表与扩展点](book/chapters/ch05.md)
-6. [事件与钩子](book/chapters/ch06.md)
-7. [插件出错怎么办](book/chapters/ch07.md)
-
-**第三篇 把代码变成工程**
-
-8. [一条命令生成插件](book/chapters/ch08.md)
-9. [让插件独立开发](book/chapters/ch09.md)
-10. [打包、分发与更新](book/chapters/ch10.md)
-
-**第四篇 收拢**
-
-11. [让它稳定运行](book/chapters/ch11.md)
-12. [把整个系统跑起来](book/chapters/ch12.md)
-
-**附录**
-
-- [术语表与延伸阅读](book/appendix/appendix.md)
-
-## 下载
-
-[下载完整 PDF](output/book.pdf)
-
 ## 配套代码
 
-每章的完整代码在根目录的 `codes/` 下，按 `ch01` 到 `ch12` 分目录，可以直接编译运行。总览见 [codes/README.md](codes/README.md)。
-
-## 编译示例代码
-
-根目录的 `build-codes.bat` 会调用本机的 MSVC，把 `codes/` 下每一章的代码编译到 `build/`，一章一个子目录：
+三册的代码在根目录 `codes/` 下，按册和章分目录：
 
 ```text
-build/ch01/app.exe
-build/ch02/app.exe
-build/ch03/host.exe        build/ch03/plugins/hello_plugin.dll
-build/ch05/host.exe        build/ch05/plugins/*.dll
-build/ch07/host.exe        build/ch07/plugin_host.exe
-build/ch09/mock_host.exe   build/ch09/test_registry.exe
-build/ch11/raii_demo.exe   build/ch11/breaker_demo.exe
-build/ch12/host.exe        build/ch12/plugins/*.dll
+codes/vol1/         入门篇，ch01 到 ch12
 ```
 
-目标文件和可执行文件都放在 `build/` 里，不会写到源码目录。`build/` 是生成目录，不进入 Git。
+入门篇的代码可以用 MSVC 一次全部编译，产物放在 `build/`：
 
-脚本会自动寻找 `vcvars64.bat`。如果找不到，说明没有安装 Visual Studio 的“使用 C++ 的桌面开发”工作负载。
+```bat
+build-codes.bat
+```
 
-`ch08` 和 `ch10` 是 Python 工具，不需要编译，脚本里会打印用法。
+## 编译本书
 
-## 编译本书 PDF
+需要 Python 3.10 以上和 Chrome 或 Edge。克隆仓库后双击根目录的 `一键生成PDF.bat`，或者按册单独构建：
 
-需要 Python 3.10 以上和 Chrome 或 Edge。克隆仓库后双击根目录的 `一键生成PDF.bat`，脚本会安装依赖、生成插图、排版 PDF，结果写到 `output/book.pdf`。
+```bash
+python books/build/build.py --book books/vol1-basics
+python books/build/build.py --book books/vol2-architecture
+python books/build/build.py --book books/vol3-engineering
+python books/build/build.py --all
+```
 
-书里的 C++ 示例需要 C++17 编译器。Windows 可以用 Visual Studio，Linux 可以用 GCC 或 Clang。
+PDF 输出到 `output/`，文件名由各册的 `book.json` 决定。
 
 ## 许可
 
