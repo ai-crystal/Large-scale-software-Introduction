@@ -4,7 +4,13 @@
 
 ## 在线阅读
 
-**<https://ai-crystal.github.io/Large-scale-software-Introduction/>**
+**完整站点：<https://ai-crystal.github.io/Large-scale-software-Introduction/>**
+
+每册的在线阅读地址：
+
+- 入门篇：<https://ai-crystal.github.io/Large-scale-software-Introduction/#/books/vol1-basics/README>
+- 架构篇：<https://ai-crystal.github.io/Large-scale-software-Introduction/#/books/vol2-architecture/README>
+- 工程篇：<https://ai-crystal.github.io/Large-scale-software-Introduction/#/books/vol3-engineering/README>
 
 三册的完整内容、插图和 PDF 下载都在这个站点里，点开就能读，不需要克隆仓库。
 
@@ -16,9 +22,9 @@
 
 | 册 | 主题 | 页数 | 在线阅读 | PDF |
 |---|---|---|---|---|
-| 入门篇 | 用 C++ 从二十行代码到一个插件系统 | 142 | [开始阅读](books/vol1-basics/README.md) | [下载](output/vol1-basics.pdf) |
-| 架构篇 | 可扩展系统的内核、契约与协作机制 | 73 | [开始阅读](books/vol2-architecture/README.md) | [下载](output/vol2-architecture.pdf) |
-| 工程篇 | 组件模板、分发生态与稳定运行 | 67 | [开始阅读](books/vol3-engineering/README.md) | [下载](output/vol3-engineering.pdf) |
+| 入门篇 | 用 C++ 从二十行代码到一个插件系统 | 142 | [在线阅读](https://ai-crystal.github.io/Large-scale-software-Introduction/#/books/vol1-basics/README) | [下载](output/vol1-basics.pdf) |
+| 架构篇 | 可扩展系统的内核、契约与协作机制 | 73 | [在线阅读](https://ai-crystal.github.io/Large-scale-software-Introduction/#/books/vol2-architecture/README) | [下载](output/vol2-architecture.pdf) |
+| 工程篇 | 组件模板、分发生态与稳定运行 | 67 | [在线阅读](https://ai-crystal.github.io/Large-scale-software-Introduction/#/books/vol3-engineering/README) | [下载](output/vol3-engineering.pdf) |
 
 ## 三册的关系
 

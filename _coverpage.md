@@ -6,7 +6,9 @@
 
 **Dr. Dezeming**
 
-[开始阅读](books/vol1-basics/README.md)
+[入门篇 在线阅读](https://ai-crystal.github.io/Large-scale-software-Introduction/#/books/vol1-basics/README)
+[架构篇 在线阅读](https://ai-crystal.github.io/Large-scale-software-Introduction/#/books/vol2-architecture/README)
+[工程篇 在线阅读](https://ai-crystal.github.io/Large-scale-software-Introduction/#/books/vol3-engineering/README)
 
 <a class="cover-download" href="output/vol1-basics.pdf" target="_blank" rel="noopener" data-router-ignore>入门篇 PDF</a>
 <a class="cover-download" href="output/vol2-architecture.pdf" target="_blank" rel="noopener" data-router-ignore>架构篇 PDF</a>
