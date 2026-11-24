@@ -1,0 +1,22 @@
+{
+  "name": "vol4-patterns",
+  "title": "大型软件开发技术",
+  "volume": "模式篇",
+  "full_title": "大型软件开发技术：模式篇",
+  "subtitle": "二十三种可复用的解法",
+  "series": "LARGE-SCALE SOFTWARE",
+  "pdf": "vol4-patterns.pdf",
+  "author": "Dr. Dezeming",
+  "year": "2026",
+  "version": "1.0",
+  "toc_sections": true,
+  "cover_color": "#c9a227",
+  "accent_dark": "#8a6d1f",
+  "cover_bg": "logo13.png",
+  "cover_blurb": "从一个具体的麻烦开始<br>\n       一个模式一章，讲清角色、协作与取舍",
+  "back_lead": "模式不是模板，<br>是对反复出现的问题的一次命名。",
+  "back_text": "二十三种设计模式，每一种都从一个具体的编程场景讲起：为什么会写出那样的代码，问题落在哪一段逻辑上，模式里的几个角色分别承担什么，调用时按什么顺序协作，什么时候该用，什么时候用了反而更糟。书里很少给完整代码，重点放在判断上。",
+  "back_tags": "创建型　·　结构型　·　行为型<br>\n       角色分工　·　协作顺序　·　适用边界",
+  "intro": "本书用真实编程场景讲二十三种设计模式，先讲清麻烦从哪来，再讲角色怎么分工、协作怎么走，最后说明适用的边界。",
+  "keywords": "设计模式, 创建型, 结构型, 行为型, 软件设计, C++"
+}
