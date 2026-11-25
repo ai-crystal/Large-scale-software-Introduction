@@ -2,23 +2,11 @@
 
 > 从二十行 C++ 代码到一个可交付的插件系统
 
-四册书，一条主线：入门、架构、工程、模式。
+一套讲大型软件开发的书。从一段二十行的 C++ 程序开始，逐步做出一个能加载插件、能隔离故障、能打包更新的系统；往下讨论架构取舍和工程交付；最后把写代码时反复用到的二十三种解法逐一讲清楚。
 
-**Dr. Dezeming**
+**Dr. Dezeming**　·　2026
 
-<p class="cover-row">
-<a class="cover-read" href="https://ai-crystal.github.io/Large-scale-software-Introduction/#/books/vol1-basics/README">入门篇 在线阅读</a>
-<a class="cover-read" href="https://ai-crystal.github.io/Large-scale-software-Introduction/#/books/vol2-architecture/README">架构篇 在线阅读</a>
-</p>
-
-<p class="cover-row">
-<a class="cover-read" href="https://ai-crystal.github.io/Large-scale-software-Introduction/#/books/vol3-engineering/README">工程篇 在线阅读</a>
-<a class="cover-read" href="https://ai-crystal.github.io/Large-scale-software-Introduction/#/books/vol4-patterns/README">模式篇 在线阅读</a>
-</p>
-
-<p class="cover-row">
-<a class="cover-download" href="output/vol1-basics.pdf" target="_blank" rel="noopener" data-router-ignore>入门篇 PDF</a>
-<a class="cover-download" href="output/vol2-architecture.pdf" target="_blank" rel="noopener" data-router-ignore>架构篇 PDF</a>
-<a class="cover-download" href="output/vol3-engineering.pdf" target="_blank" rel="noopener" data-router-ignore>工程篇 PDF</a>
-<a class="cover-download" href="output/vol4-patterns.pdf" target="_blank" rel="noopener" data-router-ignore>模式篇 PDF</a>
+<p class="cover-links">
+<a href="#/books/vol1-basics/README">开始阅读</a>
+<a href="#/README">书目与下载</a>
 </p>

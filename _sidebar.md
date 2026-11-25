@@ -1,87 +1,17 @@
-- [封面](/#/)
-- [首页](README.md)
+- [系列首页](/README.md)
 
-- **入门篇**
-  - [本册首页](books/vol1-basics/README.md)
-  - [前言](books/vol1-basics/front/preface.md)
-  - [第 1 章 二十行程序](books/vol1-basics/chapters/ch01.md)
-  - [第 2 章 把代码拆开](books/vol1-basics/chapters/ch02.md)
-  - [第 3 章 第一个插件](books/vol1-basics/chapters/ch03.md)
-  - [第 4 章 接口就是合同](books/vol1-basics/chapters/ch04.md)
-  - [第 5 章 注册表与扩展点](books/vol1-basics/chapters/ch05.md)
-  - [第 6 章 事件与钩子](books/vol1-basics/chapters/ch06.md)
-  - [第 7 章 插件出错怎么办](books/vol1-basics/chapters/ch07.md)
-  - [第 8 章 一条命令生成插件](books/vol1-basics/chapters/ch08.md)
-  - [第 9 章 让插件独立开发](books/vol1-basics/chapters/ch09.md)
-  - [第 10 章 打包、分发与更新](books/vol1-basics/chapters/ch10.md)
-  - [第 11 章 让它稳定运行](books/vol1-basics/chapters/ch11.md)
-  - [第 12 章 把整个系统跑起来](books/vol1-basics/chapters/ch12.md)
-  - [附录 术语表与延伸阅读](books/vol1-basics/appendix/appendix.md)
-  - [下载入门篇 PDF](output/vol1-basics.pdf ':ignore')
+- **01　入门篇**
+  - [本册首页](/books/vol1-basics/README.md)
+  - <a href="/output/vol1-basics.pdf" target="_blank" rel="noopener" data-router-ignore>下载 PDF</a>
 
-- **架构篇**
-  - [本册首页](books/vol2-architecture/README.md)
-  - [前言](books/vol2-architecture/front/preface.md)
-  - [第 1 章 插件变多之后](books/vol2-architecture/chapters/ch01.md)
-  - [第 2 章 内核的边界](books/vol2-architecture/chapters/ch02.md)
-  - [第 3 章 扩展点的三种形态](books/vol2-architecture/chapters/ch03.md)
-  - [第 4 章 契约的版本](books/vol2-architecture/chapters/ch04.md)
-  - [第 5 章 事件变多之后](books/vol2-architecture/chapters/ch05.md)
-  - [第 6 章 插件跑在哪里](books/vol2-architecture/chapters/ch06.md)
-  - [第 7 章 服务注册表](books/vol2-architecture/chapters/ch07.md)
-  - [第 8 章 渲染服务的取舍](books/vol2-architecture/chapters/ch08.md)
-  - [第 9 章 把结构装回去](books/vol2-architecture/chapters/ch09.md)
-  - [第 10 章 结构要付多少代价](books/vol2-architecture/chapters/ch10.md)
-  - [第 11 章 什么时候继续演进](books/vol2-architecture/chapters/ch11.md)
-  - [下载架构篇 PDF](output/vol2-architecture.pdf ':ignore')
+- **02　架构篇**
+  - [本册首页](/books/vol2-architecture/README.md)
+  - <a href="/output/vol2-architecture.pdf" target="_blank" rel="noopener" data-router-ignore>下载 PDF</a>
 
-- **工程篇**
-  - [本册首页](books/vol3-engineering/README.md)
-  - [前言](books/vol3-engineering/front/preface.md)
-  - [第 1 章 模板解决的不是省事](books/vol3-engineering/chapters/ch01.md)
-  - [第 2 章 一条命令生成组件](books/vol3-engineering/chapters/ch02.md)
-  - [第 3 章 契约包](books/vol3-engineering/chapters/ch03.md)
-  - [第 4 章 假宿主](books/vol3-engineering/chapters/ch04.md)
-  - [第 5 章 持续集成](books/vol3-engineering/chapters/ch05.md)
-  - [第 6 章 构建产物](books/vol3-engineering/chapters/ch06.md)
-  - [第 7 章 签名](books/vol3-engineering/chapters/ch07.md)
-  - [第 8 章 分发与更新](books/vol3-engineering/chapters/ch08.md)
-  - [第 9 章 可观测性](books/vol3-engineering/chapters/ch09.md)
-  - [第 10 章 从一条命令到用户手里](books/vol3-engineering/chapters/ch10.md)
-  - [第 11 章 维护与停止](books/vol3-engineering/chapters/ch11.md)
-  - [下载工程篇 PDF](output/vol3-engineering.pdf ':ignore')
+- **03　工程篇**
+  - [本册首页](/books/vol3-engineering/README.md)
+  - <a href="/output/vol3-engineering.pdf" target="_blank" rel="noopener" data-router-ignore>下载 PDF</a>
 
-- **模式篇**
-  - [本册首页](books/vol4-patterns/README.md)
-  - [前言](books/vol4-patterns/front/preface.md)
-  - **第一篇 创建型**
-  - [第 1 章 单例：全局只能有一份](books/vol4-patterns/chapters/ch01.md)
-  - [第 2 章 工厂方法：把选类型的决定挪走](books/vol4-patterns/chapters/ch02.md)
-  - [第 3 章 抽象工厂：成套的东西一起换](books/vol4-patterns/chapters/ch03.md)
-  - [第 4 章 建造者：分步装配一个复杂对象](books/vol4-patterns/chapters/ch04.md)
-  - [第 5 章 原型：复制一个已经配好的对象](books/vol4-patterns/chapters/ch05.md)
-  - **第二篇 结构型**
-  - [第 6 章 适配器：让两套接口对上](books/vol4-patterns/chapters/ch06.md)
-  - [第 7 章 桥接：两个维度各自变化](books/vol4-patterns/chapters/ch07.md)
-  - [第 8 章 组合：把树当成一个整体](books/vol4-patterns/chapters/ch08.md)
-  - [第 9 章 装饰器：一层层加上能力](books/vol4-patterns/chapters/ch09.md)
-  - [第 10 章 外观：给一组子系统一个入口](books/vol4-patterns/chapters/ch10.md)
-  - [第 11 章 享元：共享不变的部分](books/vol4-patterns/chapters/ch11.md)
-  - [第 12 章 代理：在真实对象前面站一个替身](books/vol4-patterns/chapters/ch12.md)
-  - **第三篇 行为型**
-  - [第 13 章 责任链：沿着一条链找处理者](books/vol4-patterns/chapters/ch13.md)
-  - [第 14 章 命令：把一次操作变成对象](books/vol4-patterns/chapters/ch14.md)
-  - [第 15 章 解释器：给一套小语言求值](books/vol4-patterns/chapters/ch15.md)
-  - [第 16 章 迭代器：不暴露内部结构，逐个访问集合里的元素](books/vol4-patterns/chapters/ch16.md)
-  - [第 17 章 中介者：多个对象互相通信，改由中间人转发](books/vol4-patterns/chapters/ch17.md)
-  - [第 18 章 备忘录：保存某个时刻的状态，之后能恢复](books/vol4-patterns/chapters/ch18.md)
-  - [第 19 章 观察者：一个对象变化，通知所有关心它的对象](books/vol4-patterns/chapters/ch19.md)
-  - [第 20 章 状态：对象的行为随内部状态改变而改变](books/vol4-patterns/chapters/ch20.md)
-  - [第 21 章 策略：把可替换的算法独立出来](books/vol4-patterns/chapters/ch21.md)
-  - [第 22 章 模板方法：固定流程骨架，把其中几步留给子类](books/vol4-patterns/chapters/ch22.md)
-  - [第 23 章 访问者：不修改元素类，给它们加新操作](books/vol4-patterns/chapters/ch23.md)
-  - [附录 速查表与选择路径](books/vol4-patterns/appendix/appendix.md)
-  - [下载模式篇 PDF](output/vol4-patterns.pdf ':ignore')
-
-- **关于**
-  - [GitHub 仓库](https://github.com/ai-crystal/Large-scale-software-Introduction)
+- **04　模式篇**
+  - [本册首页](/books/vol4-patterns/README.md)
+  - <a href="/output/vol4-patterns.pdf" target="_blank" rel="noopener" data-router-ignore>下载 PDF</a>
