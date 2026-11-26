@@ -19,4 +19,4 @@
 - **附录**
   - [附录 A 术语表](/books/vol1-basics/appendix/appendix.md)
 
-- <a href="/output/vol1-basics.pdf" target="_blank" rel="noopener" data-router-ignore>下载 PDF</a>
+- <a href="/output/v1-basics.pdf" target="_blank" rel="noopener" data-router-ignore>下载 PDF</a>

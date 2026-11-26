@@ -30,4 +30,4 @@
 - **附录**
   - [附录](/books/vol4-patterns/appendix/appendix.md)
 
-- <a href="/output/vol4-patterns.pdf" target="_blank" rel="noopener" data-router-ignore>下载 PDF</a>
+- <a href="/output/v4-patterns.pdf" target="_blank" rel="noopener" data-router-ignore>下载 PDF</a>

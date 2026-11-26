@@ -6,7 +6,7 @@
 
 共 23 章 · 152 页
 
-[从第 1 章开始](chapters/ch01.md)　·　<a href="../../output/vol4-patterns.pdf" target="_blank" rel="noopener" data-router-ignore>下载本册 PDF</a>
+[从第 1 章开始](chapters/ch01.md)　·　<a href="../../output/v4-patterns.pdf" target="_blank" rel="noopener" data-router-ignore>下载本册 PDF</a>
 
 ## 目录
 

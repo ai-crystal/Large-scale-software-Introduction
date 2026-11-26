@@ -15,4 +15,4 @@
 - [第 10 章　结构要付多少代价](/books/vol2-architecture/chapters/ch10.md)
 - [第 11 章　什么时候继续演进](/books/vol2-architecture/chapters/ch11.md)
 
-- <a href="/output/vol2-architecture.pdf" target="_blank" rel="noopener" data-router-ignore>下载 PDF</a>
+- <a href="/output/v2-architecture.pdf" target="_blank" rel="noopener" data-router-ignore>下载 PDF</a>
