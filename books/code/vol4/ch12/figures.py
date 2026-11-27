@@ -4,7 +4,7 @@ import os
 import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "..", "..", "common", "figstyle"))
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "..", "common"))
 from figlib import render_roles  # noqa: E402
 
 ROOT = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(
@@ -25,5 +25,30 @@ def fig_12_1():
     render_roles(body, os.path.join(ROOT, "images", "12", "fig12-1.png"))
 
 
+def fig_12_2():
+    body = """  cli [label="业务代码", fillcolor="#f1f3f5", color="#6b7280"];
+  px [label="远程代理
+预算 · 重试 · 熔断", fillcolor="#f6efdd", color="#b08a2e"];
+  hit [label="缓存命中
+直接返回", fillcolor="#e8eef6", color="#1f3a5f"];
+  op [label="熔断打开
+快速失败", fillcolor="#e8eef6", color="#1f3a5f"];
+  tx [label="传输层
+序列化与连接", fillcolor="#e8eef6", color="#1f3a5f"];
+  sv [label="远端服务
+超时不等于停下", fillcolor="#ffffff", color="#6b7280"];
+  cli -> px [label="调用"];
+  px -> hit [label="先查"];
+  px -> op [label="连续失败"];
+  px -> tx [label="正常转发"];
+  hit -> cli [style=dashed, label="命中"];
+  op -> cli [style=dashed, label="拒绝"];
+  tx -> sv [label="带剩余预算"];
+  sv -> tx [style=dashed, label="响应"];
+"""
+    render_roles(body, os.path.join(ROOT, "images", "12", "fig12-2.png"))
+
+
 if __name__ == "__main__":
     fig_12_1()
+    fig_12_2()

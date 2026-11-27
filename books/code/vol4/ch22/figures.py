@@ -4,7 +4,7 @@ import os
 import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "..", "..", "common", "figstyle"))
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "..", "common"))
 from figlib import render_roles  # noqa: E402
 
 ROOT = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(
@@ -27,5 +27,22 @@ def fig_22_1():
     render_roles(body, os.path.join(ROOT, "images", "22", "fig22-1.png"))
 
 
+def fig_22_2():
+    body = """  sc [label="导入调度器", fillcolor="#ffffff", color="#6b7280"];
+  bs [label="DataImporter\nrun() 公有非虚", fillcolor="#f6efdd", color="#b08a2e"];
+  s1 [label="load()", fillcolor="#e8eef6", color="#1f3a5f"];
+  s2 [label="validate_all()", fillcolor="#e8eef6", color="#1f3a5f"];
+  s3 [label="write_all()", fillcolor="#e8eef6", color="#1f3a5f"];
+  xl [label="ExcelCustomerImporter", fillcolor="#ffffff", color="#6b7280"];
+  sc -> bs [label="run(source)"];
+  bs -> s1 [label="1"];
+  bs -> s2 [label="2"];
+  bs -> s3 [label="3"];
+  xl -> bs [label="只能实现这三个", style=dashed];
+"""
+    render_roles(body, os.path.join(ROOT, "images", "22", "fig22-2.png"))
+
+
 if __name__ == "__main__":
     fig_22_1()
+    fig_22_2()

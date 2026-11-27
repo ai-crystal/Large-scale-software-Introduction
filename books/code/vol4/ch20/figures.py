@@ -4,7 +4,7 @@ import os
 import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "..", "..", "common", "figstyle"))
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "..", "common"))
 from figlib import render_roles  # noqa: E402
 
 ROOT = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(
@@ -26,5 +26,20 @@ def fig_20_1():
     render_roles(body, os.path.join(ROOT, "images", "20", "fig20-1.png"))
 
 
+def fig_20_2():
+    body = """  ui [label="界面按钮", fillcolor="#ffffff", color="#6b7280"];
+  tb [label="转移表", fillcolor="#e8eef6", color="#1f3a5f"];
+  ctx [label="订单上下文", fillcolor="#f6efdd", color="#b08a2e"];
+  db [label="状态名落库", fillcolor="#ffffff", color="#6b7280"];
+  ui -> tb [label="渲染前查可用操作"];
+  ui -> ctx [label="点击"];
+  ctx -> tb [label="当前状态加操作"];
+  tb -> ctx [label="目标状态与守卫"];
+  ctx -> db [label="写回"];
+"""
+    render_roles(body, os.path.join(ROOT, "images", "20", "fig20-2.png"))
+
+
 if __name__ == "__main__":
     fig_20_1()
+    fig_20_2()

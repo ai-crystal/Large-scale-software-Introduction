@@ -4,7 +4,7 @@ import os
 import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "..", "..", "common", "figstyle"))
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "..", "common"))
 from figlib import render_roles  # noqa: E402
 
 ROOT = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(

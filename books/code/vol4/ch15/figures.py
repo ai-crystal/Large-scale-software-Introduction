@@ -4,7 +4,7 @@ import os
 import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "..", "..", "common", "figstyle"))
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "..", "common"))
 from figlib import render_roles  # noqa: E402
 
 ROOT = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(
@@ -30,5 +30,25 @@ def fig_15_1():
     render_roles(body, os.path.join(ROOT, "images", "15", "fig15-1.png"))
 
 
+def fig_15_2():
+    body = """  par [label="解析器
+词法 + 递归下降", fillcolor="#e8eef6", color="#1f3a5f"];
+  ast [label="语法树
+只建一次，可存库", fillcolor="#f6efdd", color="#b08a2e"];
+  ev [label="求值器
+订单上下文", fillcolor="#e8eef6", color="#1f3a5f"];
+  cp [label="编译器
+闭包缓存", fillcolor="#e8eef6", color="#1f3a5f"];
+  ch [label="静态校验
+字段与类型", fillcolor="#e8eef6", color="#1f3a5f"];
+  par -> ast [label="规则文本"];
+  ast -> ev [label="直接求值"];
+  ast -> cp [label="高频时预编译"];
+  ast -> ch [label="保存时检查"];
+"""
+    render_roles(body, os.path.join(ROOT, "images", "15", "fig15-2.png"))
+
+
 if __name__ == "__main__":
     fig_15_1()
+    fig_15_2()

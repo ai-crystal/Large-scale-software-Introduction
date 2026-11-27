@@ -4,7 +4,7 @@ import os
 import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "..", "..", "common", "figstyle"))
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "..", "common"))
 from figlib import render_roles  # noqa: E402
 
 ROOT = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(
@@ -26,5 +26,20 @@ def fig_19_1():
     render_roles(body, os.path.join(ROOT, "images", "19", "fig19-1.png"))
 
 
+def fig_19_2():
+    body = """  e1 [label="金额变化", fillcolor="#ffffff", color="#6b7280"];
+  e2 [label="地址变化", fillcolor="#ffffff", color="#6b7280"];
+  buf [label="脏标记集合", fillcolor="#e8eef6", color="#1f3a5f"];
+  tm [label="定时合并（100ms）", fillcolor="#f6efdd", color="#b08a2e"];
+  ob [label="下游观察者", fillcolor="#e8eef6", color="#1f3a5f"];
+  e1 -> buf [label="mark"];
+  e2 -> buf [];
+  buf -> tm [label="到期"];
+  tm -> ob [label="一次批量事件"];
+"""
+    render_roles(body, os.path.join(ROOT, "images", "19", "fig19-2.png"))
+
+
 if __name__ == "__main__":
     fig_19_1()
+    fig_19_2()

@@ -4,7 +4,7 @@ import os
 import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "..", "..", "common", "figstyle"))
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "..", "common"))
 from figlib import render_roles  # noqa: E402
 
 ROOT = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(
@@ -24,5 +24,26 @@ def fig_11_1():
     render_roles(body, os.path.join(ROOT, "images", "11", "fig11-1.png"))
 
 
+def fig_11_2():
+    body = """  cli [label="客户端
+Glyph 集合", fillcolor="#f1f3f5", color="#6b7280"];
+  fac [label="享元工厂
+get(key)", fillcolor="#f6efdd", color="#b08a2e"];
+  hit [label="命中
+复用同一对象", fillcolor="#e8eef6", color="#1f3a5f"];
+  miss [label="未命中
+创建并入池", fillcolor="#e8eef6", color="#1f3a5f"];
+  sty [label="共享样式
+只读，无 setter", fillcolor="#e8eef6", color="#1f3a5f"];
+  cli -> fac [label="要一个样式"];
+  fac -> hit [label="池里有活引用"];
+  fac -> miss [label="池里没有"];
+  hit -> sty [];
+  miss -> sty [label="新建"];
+"""
+    render_roles(body, os.path.join(ROOT, "images", "11", "fig11-2.png"))
+
+
 if __name__ == "__main__":
     fig_11_1()
+    fig_11_2()

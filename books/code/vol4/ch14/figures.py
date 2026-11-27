@@ -4,7 +4,7 @@ import os
 import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "..", "..", "common", "figstyle"))
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "..", "common"))
 from figlib import render_roles  # noqa: E402
 
 ROOT = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(
@@ -29,5 +29,25 @@ def fig_14_1():
     render_roles(body, os.path.join(ROOT, "images", "14", "fig14-1.png"))
 
 
+def fig_14_2():
+    body = """  usr [label="用户操作", fillcolor="#f1f3f5", color="#6b7280"];
+  cmd [label="命令对象
+execute / undo", fillcolor="#f6efdd", color="#b08a2e"];
+  hi [label="历史管理器
+撤销栈 + 重做栈", fillcolor="#e8eef6", color="#1f3a5f"];
+  qu [label="任务队列
+序列化后持久化", fillcolor="#e8eef6", color="#1f3a5f"];
+  lg [label="审计日志
+回放与追责", fillcolor="#e8eef6", color="#1f3a5f"];
+  usr -> cmd [label="构造"];
+  cmd -> hi [label="入栈"];
+  cmd -> qu [label="排队"];
+  cmd -> lg [label="留痕"];
+  hi -> cmd [label="弹出后逆序执行", style=dashed];
+"""
+    render_roles(body, os.path.join(ROOT, "images", "14", "fig14-2.png"))
+
+
 if __name__ == "__main__":
     fig_14_1()
+    fig_14_2()

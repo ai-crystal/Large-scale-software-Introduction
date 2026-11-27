@@ -15,9 +15,9 @@
 | 册 | 书名 | 一句话 | 页数 | 在线阅读 | PDF |
 | --- | --- | --- | ---: | --- | --- |
 | 01 | [入门篇](books/vol1-basics/README.md) | 用 C++ 从二十行代码到一个插件系统 | 142 | [阅读](books/vol1-basics/README.md) | <a href="output/v1-basics.pdf" target="_blank" rel="noopener" data-router-ignore>下载</a> |
-| 02 | [架构篇](books/vol2-architecture/README.md) | 可扩展系统的内核、契约与协作机制 | 73 | [阅读](books/vol2-architecture/README.md) | <a href="output/v2-architecture.pdf" target="_blank" rel="noopener" data-router-ignore>下载</a> |
-| 03 | [工程篇](books/vol3-engineering/README.md) | 组件模板、分发生态与稳定运行 | 67 | [阅读](books/vol3-engineering/README.md) | <a href="output/v3-engineering.pdf" target="_blank" rel="noopener" data-router-ignore>下载</a> |
-| 04 | [模式篇](books/vol4-patterns/README.md) | 二十三种可复用的解法 | 152 | [阅读](books/vol4-patterns/README.md) | <a href="output/v4-patterns.pdf" target="_blank" rel="noopener" data-router-ignore>下载</a> |
+| 02 | [架构篇](books/vol2-architecture/README.md) | 可扩展系统的内核、契约与协作机制 | 147 | [阅读](books/vol2-architecture/README.md) | <a href="output/v2-architecture.pdf" target="_blank" rel="noopener" data-router-ignore>下载</a> |
+| 03 | [工程篇](books/vol3-engineering/README.md) | 组件模板、分发生态与稳定运行 | 145 | [阅读](books/vol3-engineering/README.md) | <a href="output/v3-engineering.pdf" target="_blank" rel="noopener" data-router-ignore>下载</a> |
+| 04 | [模式篇](books/vol4-patterns/README.md) | 二十三种可复用的解法 | 238 | [阅读](books/vol4-patterns/README.md) | <a href="output/v4-patterns.pdf" target="_blank" rel="noopener" data-router-ignore>下载</a> |
 
 ## 怎么读
 

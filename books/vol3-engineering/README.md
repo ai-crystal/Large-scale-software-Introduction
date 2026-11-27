@@ -4,7 +4,7 @@
 
 本册讲组件模板、分发生态与稳定运行。
 
-共 11 章 · 67 页
+共 11 章 · 145 页
 
 [从第 1 章开始](chapters/ch01.md)　·　<a href="../../output/v3-engineering.pdf" target="_blank" rel="noopener" data-router-ignore>下载本册 PDF</a>
 

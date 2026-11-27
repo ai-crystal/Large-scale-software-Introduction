@@ -4,7 +4,7 @@
 
 本册讲可扩展系统的内核、契约与协作机制。
 
-共 11 章 · 73 页
+共 11 章 · 147 页
 
 [从第 1 章开始](chapters/ch01.md)　·　<a href="../../output/v2-architecture.pdf" target="_blank" rel="noopener" data-router-ignore>下载本册 PDF</a>
 

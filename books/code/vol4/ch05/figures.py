@@ -4,7 +4,7 @@ import os
 import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "..", "..", "common", "figstyle"))
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "..", "common"))
 from figlib import render_roles  # noqa: E402
 
 ROOT = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(
@@ -24,5 +24,24 @@ def fig_05_1():
     render_roles(body, os.path.join(ROOT, "images", "05", "fig5-1.png"))
 
 
+def fig_05_2():
+    body = """  a [label="原图层 A", fillcolor="#f1f3f5", color="#6b7280"];
+  b [label="副本 A′", fillcolor="#f1f3f5", color="#6b7280"];
+  ma [label="蒙版", fillcolor="#e8eef6", color="#1f3a5f"];
+  mb [label="蒙版", fillcolor="#e8eef6", color="#1f3a5f"];
+  sa [label="样式", fillcolor="#e8eef6", color="#1f3a5f"];
+  sb [label="样式", fillcolor="#e8eef6", color="#1f3a5f"];
+  im [label="图片资源\n只读", fillcolor="#f6efdd", color="#b08a2e"];
+  a -> ma [label="深拷"];
+  b -> mb [label="新对象"];
+  a -> sa [label="深拷"];
+  b -> sb [label="新对象"];
+  a -> im [label="共享"];
+  b -> im [label="共享", style=dashed];
+"""
+    render_roles(body, os.path.join(ROOT, "images", "05", "fig5-2.png"))
+
+
 if __name__ == "__main__":
     fig_05_1()
+    fig_05_2()

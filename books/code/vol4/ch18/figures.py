@@ -4,7 +4,7 @@ import os
 import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "..", "..", "common", "figstyle"))
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "..", "common"))
 from figlib import render_roles  # noqa: E402
 
 ROOT = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(
@@ -27,5 +27,21 @@ def fig_18_1():
     render_roles(body, os.path.join(ROOT, "images", "18", "fig18-1.png"))
 
 
+def fig_18_2():
+    body = """  fo [label="表单", fillcolor="#f6efdd", color="#b08a2e"];
+  li [label="附件列表", fillcolor="#e8eef6", color="#1f3a5f"];
+  at [label="附件对象", fillcolor="#ffffff", color="#6b7280"];
+  bu [label="字节缓冲区", fillcolor="#ffffff", color="#6b7280"];
+  sn [label="快照", fillcolor="#f6efdd", color="#b08a2e"];
+  fo -> li [label="持有"];
+  li -> at [];
+  at -> bu [label="指向"];
+  fo -> sn [label="生成时复制"];
+  sn -> at [label="必须复制到这一层", style=dashed];
+"""
+    render_roles(body, os.path.join(ROOT, "images", "18", "fig18-2.png"))
+
+
 if __name__ == "__main__":
     fig_18_1()
+    fig_18_2()
